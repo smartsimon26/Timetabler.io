@@ -1,42 +1,100 @@
-let curriculum = [
-    SIT400 = {
-        lecturer:"Mr Mwai",
-        Day: "Mon",
-        Timeshift:"noon",
-        venue:"GPL2",
-    },
-    SIT401 = {
-        lecturer:"Mr Mwai",
-        Day: "Mon",
-        Timeshift:"noon",
-        venue:"GPL2",
-    },
-    SIT402 = {
-        lecturer:"Mr Mwai",
-        Day: "Mon",
-        Timeshift:"noon",
-        venue:"GPL2",
-    },
-    SIT403 = {
-        lecturer:"Mr Mwai",
-        Day: "Mon",
-        Timeshift:"noon",
-        venue:"GPL2",
-    },
-    SIT404 = {
-        lecturer:"Mr Mwai",
-        Day: "Mon",
-        Timeshift:"noon",
-        venue:"GPL2",
-    },
-    SIT405 = {
-        lecturer:"Mr Mwai",
-        Day: "Mon",
-        Timeshift:"noon",
-        venue:"GPL2",
-    }
-];
-const timeshifts = ['Dawn', 'Morning', 'Noon', 'Evening'];
-const schedule= document.getElementById('tt');
+fetch("Units.json")
+.then(function(response){
+   return response.json();
+})
 
-schedule.innerHTML='<table><tr>    <td></td><td>1PL1</td><td>1PL2</td><td>1PL3</td><td>2PL4</td><td>2PL5</td></tr><tr>    <td>' + timeshifts[0] +'</td><td></td><td></td><td></td><td></td><td></td></tr><tr>    <td>' + timeshifts[1] +'</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>' + timeshifts[2] +'</td><td></td><td></td><td></td><td></td><td></td></tr><tr>    <td>' + timeshifts[3] +'</td><td></td><td></td><td></td><td></td><td></td></tr></table>';
+
+.then(function(Units){
+   let placeholder = document.querySelector("#data-output");
+   let out = "";
+   for(let unit of Units){
+      out += `
+         <tr>
+            <td>${unit.code}</td>
+            <td>${unit.lecturer}</td>
+            <td>${unit.day}</td>
+            <td>${unit.timeshift}</td>
+            <td>${unit.venue}</td>
+         </tr>
+      `;
+   }
+ 
+   placeholder.innerHTML = out;
+});
+
+var curriculum = [
+    {
+        'UnitCode':'UCU 101',
+        'Lecturer':'Mr Johnson',
+        'Day':'',
+        'Timeshift':'',
+        'Venue':''
+    },
+    {
+        'UnitCode':'SCO 410',
+        'Lecturer':'Dr. Kelly',
+        'Day':'',
+        'Timeshift':'',
+        'Venue':''
+    },
+    {
+        'UnitCode':'SIT 202',
+        'Lecturer':'Miss Becky J.',
+        'Day':'',
+        'Timeshift':'',
+        'Venue':''
+    },
+    {
+        'UnitCode':'K24 311',
+        'Lecturer':'Rev Teresiah',
+        'Day':'',
+        'Timeshift':'',
+        'Venue':''
+    },
+    {
+        'UnitCode':'SPH 340',
+        'Lecturer':'Mrs. Martha',
+        'Day':'',
+        'Timeshift':'',
+        'Venue':''
+    }
+]
+
+const tabletitles = ['Unit Code', 'Lecturer', 'Day', 'Timeshift', 'Venue'];
+const timeshifts = ['Dawn', 'Morning', 'Noon', 'Evening'];
+const venues=['1PL1','2PL2','3PL3','1PL4','2PL6'];
+const days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+let thead=document.getElementById('thead');
+thead.innerHTML=`<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>${tabletitles[2]}</td><td>${tabletitles[3]}</td><td>${tabletitles[4]}</td></tr>`
+
+
+
+
+showdata(curriculum)
+
+
+function showdata(data) {
+    var tbody=document.getElementById('tbody');
+
+    for (let i = 0; i < data.length; i++) {
+        
+    const assignday = Math.floor(Math.random() * days.length);
+    data[i].Day=days[assignday];
+
+    const assigntimeshift = Math.floor(Math.random() * timeshifts.length);
+    data[i].Timeshift=timeshifts[assigntimeshift];
+
+    const assignvenue = Math.floor(Math.random() * venues.length);
+    data[i].Venue=venues[assignvenue];
+
+        const lecture = `<tr>
+                            <td>${data[i].UnitCode}
+                            <td>${data[i].Lecturer}
+                            <td>${data[i].Day}
+                            <td>${data[i].Timeshift}
+                            <td>${data[i].Venue}
+                        </tr>`
+        tbody.innerHTML+=lecture
+    }
+}

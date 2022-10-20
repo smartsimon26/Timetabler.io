@@ -47,12 +47,12 @@ nav{
 #tt{
     position: relative;
     background-color: blue;
-    width: 75%;
+    width: 100%;
     height: 20rem;
     margin-top: .2rem;
 }
 table{
-    width: 75%;
+    width: 100%;
     border: 2px solid black;
 }
 table tr{
