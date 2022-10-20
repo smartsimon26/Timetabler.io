@@ -7,11 +7,11 @@
     <title>Timetabler</title>
     <link rel="stylesheet" href="style.css">
     <!-- CSS only -->
+    <link rel="shortcut icon" href="/Assets/Photos/favicon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/025184af48.js" crossorigin="anonymous"></script></head>
 <body>
-    <nav class="navtop">
-        <div class="logo"><h2>auto</h2></div>
+    <nav class="navtop col-12">
         <div class="menu">
             <div class="theme"><i class="fa fa-adjust"></i></div>
             <div class="settings"><i class="fa fa-gear"></i></div>
@@ -21,14 +21,39 @@
     </nav>
     <aside>
             <div class="sidemenu">
-            <div class="home"><i class="fa fa-home" aria-hidden="true"></i><li>Home</li></div>
-            <div class="home"><i class="fa fa-chart-line"></i><li>Analytics</i></li></div>  
-            <div class="home"><i class="fa fa-file" aria-hidden="true"></i><li>Reports</li></div>
-            <div class="home"><i class="fa fa-sliders" aria-hidden="true"></i><li>Edit Data</li></div>
-            <div class="home"><i class="fa fa-atom" aria-hidden="true"></i><li>Create New</li></div>
+                <div class="logo">
+                    <div class="logos">
+                        <i class="fas fa-snowflake"></i>
+                        <h2>auto</h2>
+                    </div>
+                </div>
+                <div class="navlinks">
+                    <div class="navlink home"><i class="fa fa-home" aria-hidden="true"></i><li>Home</li></div>
+                    <div class="navlink analytics"><i class="fa fa-chart-line"></i><li>Analytics</i></li></div>  
+                    <div class="navlink reports"><i class="fa fa-file" aria-hidden="true"></i><li>Reports</li></div>
+                    <div class="navlink edit"><i class="fa fa-sliders" aria-hidden="true"></i><li>Edit Data</li></div>
+                    <div class="navlink create"><i class="fa fa-atom" aria-hidden="true"></i><li>Create New</li></div>
+                    <hr>
+                    <div class="navlink edit"><i class="fa fa-right-from-bracket" aria-hidden="true"></i><li>Sign Out</li></div>
+                    <div class="navlink create"><i class="fa fa-person-walking-arrow-loop-left" aria-hidden="true"></i><li>Log Off</li></div>
+                    <div class="navlink create"><i class="fa fa-user" aria-hidden="true"></i><li>Profile</li></div>
+                </div>
             </div>
-        </aside>
-
+    </aside>
+    <div class="viewpoint">
+        <div class="content">
+            <div class="livestats">
+                <div class="ccard col-lg-10 shadow-lg">   
+                    <i class="fas fa-layer-group"></i>
+                    <div class="card-content">
+                        <h1>UNITS REGISTERED</h1>
+                        <h2>649</h2>
+                        <p>Total units done this semester</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

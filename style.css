@@ -7,38 +7,19 @@
 li{
     list-style: none;
 }
-nav h2{
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-    height: 1rem;
-    padding-top: .5rem;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 nav{
     display: flex;
     flex-wrap:nowrap;
-    position: relative;
-    justify-content: flex-start;
+    position: absolute;
+    right: 0%;
+    justify-content: flex-end;
     align-items: center;
     height: 3rem;
-    width: 100%;
     background-color: #000;
 }
-.logo{
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-}
 .menu{
-    width: 75%;
+    width: 80%;
     height: auto;
-    position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -88,13 +69,119 @@ table tr td{
     border: 2px solid black;
 }
 .sidemenu{
-    width: 20%;
-    height: 92.55vh;
-    background-color: rgb(94, 16, 16);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    min-width: 12.5rem;
+    height: 100%;
+    background-color:#000;
     color: #fff;
+    display: flex;
+    flex-direction: column;
 }
-.menu{
+.logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    position: relative;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding-left: 1rem;
+}
+.logos{
+    position: relative;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.logo i{
+    width: 2rem;
+    font-size: 2rem;
+    padding-top: .35rem;
+    padding-right: 2.5rem;
+}
+.logo h2{
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-top: 0.75rem;
+    width: auto;
+
+}
+.navlinks{
+    position: relative;
+    margin-top: 2rem;
+}
+.navlink{
     display: flex;
     flex-direction: row;
-    
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 3.5rem;
+    padding-left: 1rem;
+    border-bottom-right-radius: .25rem;
+    border-top-right-radius: .25rem;
+    width: 95%;
+}
+.home{
+    background-color:#ffffff0a;
+}
+.navlink li{
+    margin-left: 1.25rem;
+
+}
+.navlinks hr{
+    width: 90%;
+    position: relative;
+    display: flex;
+    margin-left: .5rem;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff6e;
+}
+.viewpoint{
+    position: absolute;
+    left: 12.5rem;
+    top: 3rem;
+}
+.ccard{
+    position: relative;
+    width: 20%;
+    min-width: 12.5rem;
+    height: 5rem;
+    background-color:#00000011;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    border-radius: .25rem;
+}
+.ccard i{
+    font-size: 2rem;
+}
+.card-content{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
+}
+.ccard h1{
+    font-size: .65rem;
+}
+.ccard h2{
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    font-weight: bolder;
+}
+.ccard p{
+    font-size: .5rem;
+    padding: 0;
+    margin: 0;
 }
