@@ -1,10 +1,22 @@
 *{
     font-family: poppins;
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+li{
+    list-style: none;
 }
 nav h2{
     color: #fff;
     font-weight: bold;
     font-size: 1rem;
+    height: 1rem;
+    padding-top: .5rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 nav{
     display: flex;
@@ -14,35 +26,47 @@ nav{
     align-items: center;
     height: 3rem;
     width: 100%;
+    background-color: #000;
 }
 .logo{
-    width: 20%;
-    height: auto;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-}
-.menu{
-    position: relative;
-    width: 80%;
-    height: auto;
+    width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: blanchedalmond;
+    height: 3rem;
 }
-.menu ul{
-    list-style: none;
+.menu{
+    width: 75%;
     height: auto;
-    position: absolute;
-    right: 10%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 2rem;
 }
-.menu li{
-    color: #fff;   
-    display: inline;
-    font-size: .75rem;
-    margin-right: 5rem;
+.menu i{
+    width: 2rem;
+    height: 2rem;
+    color: darkcyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu img{
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: 2rem;
+}
+.theme, .settings, .notifications, .profile{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    margin-left: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #tt{
     position: relative;
@@ -62,4 +86,15 @@ table tr{
 table tr td{
     background-color: aliceblue;
     border: 2px solid black;
+}
+.sidemenu{
+    width: 20%;
+    height: 92.55vh;
+    background-color: rgb(94, 16, 16);
+    color: #fff;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+    
 }
