@@ -1,26 +1,26 @@
-fetch("Units.json")
-.then(function(response){
-   return response.json();
-})
+// fetch("Units.json")
+// .then(function(response){
+//    return response.json();
+// })
 
 
-.then(function(Units){
-   let placeholder = document.querySelector("#data-output");
-   let out = "";
-   for(let unit of Units){
-      out += `
-         <tr>
-            <td>${unit.code}</td>
-            <td>${unit.lecturer}</td>
-            <td>${unit.day}</td>
-            <td>${unit.timeshift}</td>
-            <td>${unit.venue}</td>
-         </tr>
-      `;
-   }
+// .then(function(Units){
+//    let placeholder = document.querySelector("#data-output");
+//    let out = "";
+//    for(let unit of Units){
+//       out += `
+//          <tr>
+//             <td>${unit.code}</td>
+//             <td>${unit.lecturer}</td>
+//             <td>${unit.day}</td>
+//             <td>${unit.timeshift}</td>
+//             <td>${unit.venue}</td>
+//          </tr>
+//       `;
+//    }
  
-   placeholder.innerHTML = out;
-});
+//    placeholder.innerHTML = out;
+// });
 
 var curriculum = [
     {
