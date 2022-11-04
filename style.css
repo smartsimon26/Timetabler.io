@@ -8,24 +8,34 @@ li{
     list-style: none;
 }
 nav{
+    width: 82.5%;
     display: flex;
     flex-wrap:nowrap;
     position: absolute;
     right: 0%;
-    justify-content: flex-end;
+    top: 0%;
+    justify-content: space-between;
     align-items: center;
     height: 3rem;
-    background-color: #000;
+    background-color:#fff;
 }
-.menu{
-    width: 80%;
+.menuactions{
+    width: 25%;
+    height: auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.menubuttons{
+    width: 30%;
     height: auto;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding-right: 2rem;
 }
-.menu i{
+.menubuttons i{
     width: 2rem;
     height: 2rem;
     color: #000;
@@ -33,7 +43,7 @@ nav{
     justify-content: center;
     align-items: center;
 }
-.menu img{
+.menubuttons img{
     width: 2rem;
     height: 2rem;
     object-fit: cover;
@@ -43,8 +53,8 @@ nav{
     width: 2rem;
     height: 2rem;
     border-radius: 2rem;
-    background-color: #fff;
-    margin-left: .5rem;
+    background-color:#0000000a;
+    margin-right: .5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,9 +68,7 @@ nav{
 }
 .sidemenu{
     position: absolute;
-    top: 0%;
-    left: 0%;
-    min-width: 12.5rem;
+    width: 17.5%;
     height: 100%;
     background-color:#000;
     color: #fff;
@@ -128,43 +136,43 @@ nav{
     margin-left: .5rem;
     align-items: center;
     justify-content: center;
-    color: #ffffff6e;
+    color: #ffffff28;
 }
 .viewpoint{
     position: relative;
+    width: 82.5%;
     top: 3rem;
-    
+    left: 17.5%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 .content{
+    width: 100%;
+    height: auto;
     position: relative;
     display: flex;
-    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
 }
-.livestats{
+.quickstats{
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items:center;
     width: 100%;
-    height: auto;
 }
 .ccard{
     position: relative;
-    width: 20%;
-    min-width: 12.5rem;
+    width: 12.5rem;
     height: 5rem;
     background-color:#00000011;
+    border: .2rem solid #000;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 0;
+    margin: .5rem;
     padding: 0;
     border-radius: .25rem;
 }
@@ -192,7 +200,10 @@ nav{
     padding: 0;
     margin: 0;
 }
-
-
-
-
+.finaltimetable{
+    position: relative;
+    left: 17.5%;
+    padding-left: 1rem;
+    width: 81%;
+    top: 5rem;
+}
