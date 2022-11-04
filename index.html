@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <!-- CSS only -->
     <link rel="shortcut icon" href="/Assets/Photos/favicon.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/025184af48.js" crossorigin="anonymous"></script></head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/025184af48.js" crossorigin="anonymous"></script>
+</head>
+
 <body>
     <nav class="navtop">
         <div class="menuactions">
@@ -32,12 +36,11 @@
         </div> 
     </nav>
     <aside>
-            <div class="sidemenu">
-                <div class="logo">
-                    <div class="logos">
-                        <i class="fas fa-snowflake"></i>
-                        <h2>auto</h2>
-                    </div>
+        <div class="sidemenu">
+            <div class="logo">
+                <div class="logos">
+                    <i class="fas fa-snowflake"></i>
+                    <h2>auto</h2>
                 </div>
                 <div class="navlinks">
                     <div class="navlink home"><i class="fa fa-home" aria-hidden="true"></i><li>Home</li></div>
@@ -46,9 +49,15 @@
                     <div class="navlink edit"><i class="fa fa-sliders" aria-hidden="true"></i><li> <a href="Input.html" target="_blank" rel="noopener noreferrer">Data</a></li></div>
                     <div class="navlink create"><i class="fas fa-calendar-days"></i><li>Create New</li></div>
                     <hr>
-                    <div class="navlink edit"><i class="fa fa-right-from-bracket" aria-hidden="true"></i><li>Sign Out</li></div>
-                    <div class="navlink create"><i class="fa fa-person-walking-arrow-loop-left" aria-hidden="true"></i><li>Log Off</li></div>
-                    <div class="navlink create"><i class="fa fa-user" aria-hidden="true"></i><li>Profile</li></div>
+                    <div class="navlink edit"><i class="fa fa-right-from-bracket" aria-hidden="true"></i>
+                        <li>Sign Out</li>
+                    </div>
+                    <div class="navlink create"><i class="fa fa-person-walking-arrow-loop-left" aria-hidden="true"></i>
+                        <li>Log Off</li>
+                    </div>
+                    <div class="navlink create"><i class="fa fa-user" aria-hidden="true"></i>
+                        <li>Profile</li>
+                    </div>
                 </div>
             </div>
     </aside>
@@ -62,29 +71,13 @@
                         <h2>649</h2>
                         <p>Total units done this semester</p>
                     </div>
-                </div>
-                <div class="ccard shadow-lg">   
-                    <i class="fas fa-layer-group"></i>
-                    <div class="card-content">
-                        <h1>UNITS REGISTERED</h1>
-                        <h2>649</h2>
-                        <p>Total units done this semester</p>
-                    </div>
-                </div>
-                <div class="ccard shadow-lg">   
-                    <i class="fas fa-layer-group"></i>
-                    <div class="card-content">
-                        <h1>UNITS REGISTERED</h1>
-                        <h2>649</h2>
-                        <p>Total units done this semester</p>
-                    </div>
-                </div>
-                <div class="ccard shadow-lg">   
-                    <i class="fas fa-layer-group"></i>
-                    <div class="card-content">
-                        <h1>UNITS REGISTERED</h1>
-                        <h2>649</h2>
-                        <p>Total units done this semester</p>
+                    <div class="finaltimetable">
+                        <table class="table table-hover table-striped align-middle mb-0 bg-white">
+                            <thead class="bg-black text-white" id="thead">
+                            </thead>
+                            <tbody id="tbody">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -125,4 +118,5 @@
     <script src="script.js"></script>
     <script src="JsForComponents.js"></script>
 </body>
+
 </html>
