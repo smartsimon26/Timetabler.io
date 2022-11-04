@@ -20,6 +20,6 @@ Get units with their respective lecturers and constraints then generate the time
     - By default if no constraints are specified, the lecture can take place in any room and any day
     - In future there will be a constraint for timeshift
     - The data should be fed in the Javascript object
-- ## Step 3 - GENERATING TIMETABLE
+- ## Step 3 - GENERATING THE TIMETABLE
     - Create a list of the object data, and sort them by number of constrainst(no_of_constraints) since the units with constrainsts should be prioritized
     - 
