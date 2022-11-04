@@ -7,7 +7,7 @@ Room - The room where the lecture must take place
 # Algorithm
 Get units with their respective lecturers and constraints then generate the timetable
 - ## Step 1 - MENU
-    ## _Implement in the menu some code to do the following settings_
+    _Implement in the menu some code to do the following settings_
     - Edit Timeshifts e.g 08:00-10:00, 10:30-12:30, 1:00-3:00, 3:30-5:30
     - Edit Rooms e.g PGL1, PGL2, PGL3, PGL4, ADB1, ADB2, MPH 
 - ## Step 2 - INPUT
