@@ -24,4 +24,4 @@ Get units with their respective lecturers and constraints then generate the time
     - The data should be fed in the Javascript object
 - ## Step 3 - GENERATING THE TIMETABLE
     - Create a list of the object data, and sort them by number of constrainst(no_of_constraints) since the units with constrainsts should be prioritized
-    - 
+    - To be continued
