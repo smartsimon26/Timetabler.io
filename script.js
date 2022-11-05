@@ -98,3 +98,6 @@ function showdata(data) {
         tbody.innerHTML+=lecture
     }
 }
+function addTimeshift(){
+    
+}
