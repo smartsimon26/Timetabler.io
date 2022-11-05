@@ -68,10 +68,6 @@ const days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 let thead=document.getElementById('thead');
 thead.innerHTML=`<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>${tabletitles[2]}</td><td>${tabletitles[3]}</td><td>${tabletitles[4]}</td></tr>`
 
-$("#timeshift_form").submit(function(e) {
-    e.preventDefault();
-});
-
 
 showdata(curriculum)
 
@@ -101,5 +97,8 @@ function showdata(data) {
     }
 }
 function addTimeshift(){
+    $("#timeshift_form").submit(function(e) {
+        e.preventDefault();
+    });
     document.getElementById("timeshift_table").hidden=false;
 }
