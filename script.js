@@ -1,3 +1,4 @@
+
 // fetch("Units.json")
 // .then(function(response){
 //    return response.json();
@@ -104,7 +105,7 @@ function addTimeshift(){
     var x=$("#session_time").val();
    console.log("You entered "+x)
     //Write to file
-    const fs = require("fs");
+    const fs = require('fs');
     var n_sessions=1;
     if (!fs.existsSync('timeshifts.json')) {
         try {
