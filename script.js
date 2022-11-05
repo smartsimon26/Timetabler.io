@@ -99,5 +99,5 @@ function showdata(data) {
     }
 }
 function addTimeshift(){
-    alert("Please wait");
+    document.getElementById("timeshift_table").hidden=false;
 }
