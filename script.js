@@ -101,5 +101,32 @@ function addTimeshift(){
         e.preventDefault();
     });
     document.getElementById("timeshift_table").hidden=false;
+    var x=$("#sessio_time").val();
+   
+    //Write to file
+    const fs = require("fs");
+    var n_sessions=1;
+    if (!fs.existsSync('timeshifts.json')) {
+        try {
+            fs.writeFileSync('timeshifts.json', data)
+            console.log('JSON file created.')
+          } catch (err) {
+            console.error(err)
+          }
+    }
+    
+    let timeshifts_json = fs.readFileSync("timeshifts.json","utf-8");
+    let timeshifts = JSON.parse(timeshifts_json);
+    
+    n_sessions+=timeshifts.length;
+    const timeshift={session:n_sessions,time:x};
+    timeshifts.push(timeshift);
+    timeshifts_json = JSON.stringify(timeshifts);
+    fs.writeFileSync("timeshifts.json",timeshifts_json,"utf-8");
+
+    // Add the value to table
+    $('timeshift_table > tbody:last-child').append('<tr><td>'+n_sessions+'</td><td>'+x+'</td></tr>');
     $("#session_time").val("");
+    
+    
 }
