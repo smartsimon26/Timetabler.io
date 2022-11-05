@@ -101,4 +101,5 @@ function addTimeshift(){
         e.preventDefault();
     });
     document.getElementById("timeshift_table").hidden=false;
+    $("#session_time").text()="";
 }
