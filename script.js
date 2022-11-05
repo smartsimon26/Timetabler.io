@@ -101,7 +101,7 @@ function addTimeshift(){
         e.preventDefault();
     });
     document.getElementById("timeshift_table").hidden=false;
-    var x=$("#sessio_time").val();
+    var x=$("#session_time").val();
    
     //Write to file
     const fs = require("fs");
