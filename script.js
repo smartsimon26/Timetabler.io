@@ -102,7 +102,7 @@ function addTimeshift(){
     });
     document.getElementById("timeshift_table").hidden=false;
     var x=$("#session_time").val();
-   
+   console.log("You entered "+x)
     //Write to file
     const fs = require("fs");
     var n_sessions=1;
