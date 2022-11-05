@@ -7,7 +7,7 @@
 li{
     list-style: none;
 }
-nav{
+.navtop{
     width: 82.5%;
     display: flex;
     flex-wrap:nowrap;
@@ -17,7 +17,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     height: 3rem;
-    background-color:#fff;
+    background-color:#000;
 }
 .menuactions{
     width: 25%;
@@ -53,7 +53,7 @@ nav{
     width: 2rem;
     height: 2rem;
     border-radius: 2rem;
-    background-color:#0000000a;
+    background-color:#fff;
     margin-right: .5rem;
     display: flex;
     justify-content: center;
@@ -129,14 +129,14 @@ nav{
     margin-left: 1.25rem;
 
 }
-.navlinks hr{
+.hr{
     width: 90%;
     position: relative;
     display: flex;
     margin-left: .5rem;
     align-items: center;
     justify-content: center;
-    color: #ffffff28;
+    color: #ffffff4d;
 }
 .viewpoint{
     position: relative;
