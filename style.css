@@ -207,3 +207,7 @@ nav{
     width: 81%;
     top: 5rem;
 }
+.white{
+    text-decoration: none;
+    color: white;
+}
