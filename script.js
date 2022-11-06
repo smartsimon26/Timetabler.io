@@ -1,3 +1,4 @@
+
 // fetch("Units.json")
 // .then(function(response){
 //    return response.json();
@@ -18,75 +19,73 @@
 //          </tr>
 //       `;
 //    }
- 
+
 //    placeholder.innerHTML = out;
 // });
 
 var curriculum = [
     {
-        'UnitCode':'UCU 101',
-        'Lecturer':'Mr Johnson',
-        'Day':'',
-        'Timeshift':'',
-        'Venue':''
+        'UnitCode': 'UCU 101',
+        'Lecturer': 'Mr Johnson',
+        'Day': '',
+        'Timeshift': '',
+        'Venue': ''
     },
     {
-        'UnitCode':'SCO 410',
-        'Lecturer':'Dr. Kelly',
-        'Day':'',
-        'Timeshift':'',
-        'Venue':''
+        'UnitCode': 'SCO 410',
+        'Lecturer': 'Dr. Kelly',
+        'Day': '',
+        'Timeshift': '',
+        'Venue': ''
     },
     {
-        'UnitCode':'SIT 202',
-        'Lecturer':'Miss Becky J.',
-        'Day':'',
-        'Timeshift':'',
-        'Venue':''
+        'UnitCode': 'SIT 202',
+        'Lecturer': 'Miss Becky J.',
+        'Day': '',
+        'Timeshift': '',
+        'Venue': ''
     },
     {
-        'UnitCode':'K24 311',
-        'Lecturer':'Rev Teresiah',
-        'Day':'',
-        'Timeshift':'',
-        'Venue':''
+        'UnitCode': 'K24 311',
+        'Lecturer': 'Rev Teresiah',
+        'Day': '',
+        'Timeshift': '',
+        'Venue': ''
     },
     {
-        'UnitCode':'SPH 340',
-        'Lecturer':'Mrs. Martha',
-        'Day':'',
-        'Timeshift':'',
-        'Venue':''
+        'UnitCode': 'SPH 340',
+        'Lecturer': 'Mrs. Martha',
+        'Day': '',
+        'Timeshift': '',
+        'Venue': ''
     }
 ]
 
 const tabletitles = ['Unit Code', 'Lecturer', 'Day', 'Timeshift', 'Venue'];
 const timeshifts = ['Dawn', 'Morning', 'Noon', 'Evening'];
-const venues=['1PL1','2PL2','3PL3','1PL4','2PL6'];
-const days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const venues = ['1PL1', '2PL2', '3PL3', '1PL4', '2PL6'];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
-let thead=document.getElementById('thead');
-thead.innerHTML=`<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>${tabletitles[2]}</td><td>${tabletitles[3]}</td><td>${tabletitles[4]}</td></tr>`
-
-
+let thead = document.getElementById('thead');
+thead.innerHTML = `<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>${tabletitles[2]}</td><td>${tabletitles[3]}</td><td>${tabletitles[4]}</td></tr>`
 
 
 showdata(curriculum)
 
 
 function showdata(data) {
-    var tbody=document.getElementById('tbody');
+    var tbody = document.getElementById('tbody');
 
     for (let i = 0; i < data.length; i++) {
-        
-    const assignday = Math.floor(Math.random() * days.length);
-    data[i].Day=days[assignday];
 
-    const assigntimeshift = Math.floor(Math.random() * timeshifts.length);
-    data[i].Timeshift=timeshifts[assigntimeshift];
+        const assignday = Math.floor(Math.random() * days.length);
+        data[i].Day = days[assignday];
 
-    const assignvenue = Math.floor(Math.random() * venues.length);
-    data[i].Venue=venues[assignvenue];
+        const assigntimeshift = Math.floor(Math.random() * timeshifts.length);
+        data[i].Timeshift = timeshifts[assigntimeshift];
+
+        const assignvenue = Math.floor(Math.random() * venues.length);
+        data[i].Venue = venues[assignvenue];
 
         const lecture = `<tr>
                             <td>${data[i].UnitCode}
@@ -95,6 +94,49 @@ function showdata(data) {
                             <td>${data[i].Timeshift}
                             <td>${data[i].Venue}
                         </tr>`
-        tbody.innerHTML+=lecture
+        tbody.innerHTML += lecture
     }
+}
+function addTimeshift() {
+    $("#timeshift_form").submit(function (e) {
+        e.preventDefault();
+    });
+    document.getElementById("timeshift_table").hidden = false;
+    var x = $("#session_time").val();
+    if (x === "") {
+        return;
+    }
+    console.log("You entered " + x)
+    //Write to file
+
+    //const fs = require('fs');
+    var n_sessions = $("#timeshift_table tbody tr").length + 1;
+    console.log("Checking if file exists")
+    /*
+        fs.writeFile('timeshifts.json', "[]", (err) => {
+            if (err) { console.error(err); throw err; }
+        })
+        let timeshifts="";
+        let timeshifts_json = fs.readFile("timeshifts.json", (err,data) => {
+            if (err) { console.error(err); throw err; }
+            timeshifts = JSON.parse(data);
+            console.log("Reading from JSON");
+        })
+        
+    
+        n_sessions += timeshifts.length;
+        const timeshift = { session: n_sessions, time: x };
+        timeshifts.push(timeshift);
+        timeshifts_json = JSON.stringify(timeshifts);
+        fs.writeFile('timeshifts.json', timeshifts_json, (err) => {
+            if (err) { console.error(err); throw err; }
+            console.log("Written to JSON file");
+        }) */
+
+
+    // Add the value to table
+    $('#timeshift_table > tbody:last-child').append('<tr><td>' + n_sessions + '</td><td>' + x + '</td></tr>');
+    $("#session_time").val("");
+
+
 }
