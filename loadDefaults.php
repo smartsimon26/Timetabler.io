@@ -29,10 +29,13 @@ try {
     $conn->exec('USE timetabler');
     $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`timeshifts` ( `id` INT NOT NULL AUTO_INCREMENT , `timeshift` VARCHAR(20) NOT NULL , 
     PRIMARY KEY (`id`), UNIQUE (`timeshift`)) ENGINE = InnoDB;");
+    $conn->exec("INSERT INTO `timeshifts` (`timeshift`) VALUES('08:00-10:00'),('11:00-01:00'),('01:00-03:00'),('03:00-05:00');");
     $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`venues` ( `id` INT NOT NULL AUTO_INCREMENT , `venue` VARCHAR(20) NOT NULL , 
         PRIMARY KEY (`id`), UNIQUE (`venue`)) ENGINE = InnoDB;");
+    $conn->exec("INSERT INTO `venues` (`venue`) VALUES('ADB1'),('ADB2'),('COMP1'),('COMP2'),('EC1'),('EC2'),('EC3'),('MPH');");
     $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`days` ( `id` INT NOT NULL AUTO_INCREMENT , `day` VARCHAR(20) NOT NULL , 
         PRIMARY KEY (`id`), UNIQUE (`day`)) ENGINE = InnoDB;");
+    $conn->exec("INSERT INTO `days` (`day`) VALUES('Monday'),('Tuesday'),('Wednesday'),('Thursday'),('Friday');");
     if ($_GET['value']=="day") {
     //Days
         $stmt = $conn->prepare("SELECT day from days order by id");
