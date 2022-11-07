@@ -14,6 +14,7 @@
       src="https://kit.fontawesome.com/025184af48.js"
       crossorigin="anonymous"
     ></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="dashboard.css" />
     <title>Edit Details</title>
   </head>
@@ -176,11 +177,12 @@
                         <button class="save">Save</button>
                     </form>
                 </div>
-                <div id="timeshifts" class="tab-pane fade">
+                <div id="timeshifts" class="timeshifts tab-pane fade">
                     <h2>Enter the timeshifts</h2>
                     <form role="form" class="form row" id="timeshift_form">
                         <div class="form-group col-8">
-                            <div class="input-group"><input type="text" placeholder="Enter the session e.g 08:00-10:00"
+                            <div class="input-group">
+                                <input type="text" placeholder="Enter the session e.g 08:00-10:00"
                                     id="session_time" name="session_time" class="form-control rounded-0" required />
                             </div>
                         </div>
@@ -199,13 +201,62 @@
                         <tbody></tbody>
                     </table>
                 </div>
-                <div id="days" class="tab-pane fade">
-                  <h3>Days</h3>
-                  <p>Days go here.</p>
+                <div id="days" class="days tab-pane fade">
+                  <h2>Enter the days to cover</h2>
+                    <form role="form" class="form row" id="timeshift_form">
+                        <div class="form-group col-8">
+                            <div class="input-group">
+                                <input type="text" placeholder="Enter the days e.g Monday"
+                                    id="session_time" name="session_time" class="form-control rounded-0" required />
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <input type="button" onclick="addTimeshift()" class="btn bg-black text-white form-control"
+                                value="Add" name="add_timeshift"/>
+                        </div>
+                    </form>
+                    <table class="table table-striped table-hover mt-3" id="timeshift_table" hidden>
+                        <thead class="thead bg-black text-white">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Day</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
-                <div id="venues" class="tab-pane fade">
-                  <h3>Venues</h3>
-                  <p>venues go here</p>
+                <div id="venues" class="venues tab-pane fade">
+                  <h2>Enter the venue name & venue size</h2>
+                    <form role="form" class="form" id="timeshift_form">
+                        <div class="form-group col-8">
+                            <div class="venues_inputs input-group">
+                                <div class=" venue_name">
+                                    <label for="venue_name">Venue name</label>
+                                <input type="text" placeholder="Enter a venue e.g. PF1L4"
+                                    id="session_time" name="venue_name" class="form-control rounded-0" required />
+                                </div>
+                                <div class="venue_size">
+                                    <label for="venue-size">Venue Size</label>
+                                <input type="text" placeholder="Venue capacity e.g. 60"
+                                    id="session_time" name="venue_size" class="form-control rounded-0" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-4">
+                            <input type="button" onclick="addTimeshift()" class="btn bg-black text-white form-control"
+                                value="Add" name="add_timeshift"/>
+                        </div>
+                    </form>
+                    <table class="table table-striped table-hover mt-3" id="timeshift_table" hidden>
+                        <thead class="thead bg-black text-white">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Venue</th>
+                                <th scope="col">Capacity</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
               </div>
             
