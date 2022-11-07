@@ -97,6 +97,29 @@ thead.innerHTML = `<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>$
         tbody.innerHTML += lecture
     }
 } */
+function loadDefaults(x) {
+    console.log("loading defaults");
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var response = xmlhttp.responseText;
+            // code when server responds
+            console.log(response);
+            if (x == "venue") $("#venue-constraint").html(response);
+            else if (x == "day") $("#day-constraint").html(response);
+            else if (x == "timeshift") $("#timeshift-constraint").html(response);
+        }
+    };
+    xmlhttp.open("GET", "loadDefaults.php?value=" + x, true);
+    xmlhttp.send();
+}
 function addSetting(setting) {
     if (setting == "timeshifts") {
         console.log("timeshifts");
