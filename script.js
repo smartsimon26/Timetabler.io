@@ -67,7 +67,7 @@ const venues = ['1PL1', '2PL2', '3PL3', '1PL4', '2PL6'];
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
 let thead = document.getElementById('thead');
-thead.innerHTML=`<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>${tabletitles[2]}</td><td>${tabletitles[3]}</td><td>${tabletitles[4]}</td></tr>`
+thead.innerHTML = `<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>${tabletitles[2]}</td><td>${tabletitles[3]}</td><td>${tabletitles[4]}</td></tr>`
 
 
 showdata(curriculum)
@@ -107,36 +107,33 @@ function addTimeshift() {
         return;
     }
     console.log("You entered " + x)
-    //Write to file
-
-    //const fs = require('fs');
+    // Save to database
     var n_sessions = $("#timeshift_table tbody tr").length + 1;
-    console.log("Checking if file exists")
-    /*
-        fs.writeFile('timeshifts.json', "[]", (err) => {
-            if (err) { console.error(err); throw err; }
-        })
-        let timeshifts="";
-        let timeshifts_json = fs.readFile("timeshifts.json", (err,data) => {
-            if (err) { console.error(err); throw err; }
-            timeshifts = JSON.parse(data);
-            console.log("Reading from JSON");
-        })
-        
-    
-        n_sessions += timeshifts.length;
-        const timeshift = { session: n_sessions, time: x };
-        timeshifts.push(timeshift);
-        timeshifts_json = JSON.stringify(timeshifts);
-        fs.writeFile('timeshifts.json', timeshifts_json, (err) => {
-            if (err) { console.error(err); throw err; }
-            console.log("Written to JSON file");
-        }) */
-
-
-    // Add the value to table
-    $('#timeshift_table > tbody:last-child').append('<tr><td>' + n_sessions + '</td><td>' + x + '</td></tr>');
-    $("#session_time").val("");
-
+    // Ajax
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    var message = "";
+    const servercodes = ["SUCCESS", "FAILED:"];
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var response = xmlhttp.responseText;
+            // code when server responds
+            message = response.substring(0, 7);
+            console.log(response);
+            if (message == servercodes[0]) {// If no error occured
+                // Add the value to table
+                $('#timeshift_table > tbody:last-child').append('<tr><td>' + n_sessions + '</td><td>' + x + '</td></tr>');
+                $("#session_time").val("");
+            }
+        }
+    };
+    xmlhttp.open("GET", "saveSettings.php?timeshift=" + x, true);
+    xmlhttp.send();
 
 }
