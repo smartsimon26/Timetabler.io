@@ -13,7 +13,7 @@ class TableRows extends RecursiveIteratorIterator
 
     function current()
     {
-        return "<div><label class=\"checkbox-inline\"><input type=\"checkbox\" id=\"" .
+        return "<div class=\"form-group\"><label class=\"checkbox-inline\"><input type=\"checkbox\" id=\"" .
             parent::current() .
             "\">" .
             parent::current() .

@@ -17,7 +17,6 @@ try {
 if (isset($_GET["timeshift"])) {
     $timeshift = $_GET["timeshift"];
     try {
-        //$sql="CREATE TABLE IF NOT EXISTS timeshifts(id int not null auto_increment,timeshift varchar(20) not null unique, primary key(id)";
         $sql = "CREATE TABLE IF NOT EXISTS `timetabler`.`timeshifts` ( `id` INT NOT NULL AUTO_INCREMENT , `timeshift` VARCHAR(20) NOT NULL , 
     PRIMARY KEY (`id`), UNIQUE (`timeshift`)) ENGINE = InnoDB;";
         $conn->exec($sql);
@@ -54,6 +53,33 @@ if (isset($_GET["timeshift"])) {
         $sql = "INSERT INTO days(day)VALUES(:day)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":day", $day);
+        $stmt->execute();
+        echo "SUCCESS";
+        $conn = null;
+    } catch (PDOException $e) {
+        echo "FAILED:" . $e->getMessage();
+    }
+} elseif (isset($_GET["unit_code"])) {
+    $unit_code = $_GET['unit_code'];
+    $lecturer = $_GET['lecturer'];
+    $timeshifts = $_GET['timeshifts'];
+    $venues = $_GET['venues'];
+    $days = $_GET['days'];
+    foreach ($_GET as $key => $value) {
+        echo $key . ",," . $value . "\n";
+    }
+    try {
+        $sql = "CREATE TABLE IF NOT EXISTS `timetabler`.`lectures` ( `id` INT NOT NULL AUTO_INCREMENT , 
+        `unit_code` VARCHAR(20) NOT NULL , `lecturer` VARCHAR(30) NOT NULL, `timeshifts` VARCHAR(50), 
+        `venues` VARCHAR(50), `days` VARCHAR(50), PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+        $conn->exec($sql);
+        $sql = "INSERT INTO lectures(`unit_code`,`lecturer`,`timeshifts`,`venues`,`days`)VALUES(:unit_code,:lecturer,:timeshifts,:venues,:days)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":unit_code", $unit_code);
+        $stmt->bindParam(":lecturer", $lecturer);
+        $stmt->bindParam(":timeshifts", $timeshifts);
+        $stmt->bindParam(":venues", $venues);
+        $stmt->bindParam(":days", $days);
         $stmt->execute();
         echo "SUCCESS";
         $conn = null;
