@@ -1,104 +1,49 @@
-
-// fetch("Units.json")
-// .then(function(response){
-//    return response.json();
-// })
-
-
-// .then(function(Units){
-//    let placeholder = document.querySelector("#data-output");
-//    let out = "";
-//    for(let unit of Units){
-//       out += `
-//          <tr>
-//             <td>${unit.code}</td>
-//             <td>${unit.lecturer}</td>
-//             <td>${unit.day}</td>
-//             <td>${unit.timeshift}</td>
-//             <td>${unit.venue}</td>
-//          </tr>
-//       `;
-//    }
-
-//    placeholder.innerHTML = out;
-// });
-
-var curriculum = [
-    {
-        'UnitCode': 'UCU 101',
-        'Lecturer': 'Mr Johnson',
-        'Day': '',
-        'Timeshift': '',
-        'Venue': ''
-    },
-    {
-        'UnitCode': 'SCO 410',
-        'Lecturer': 'Dr. Kelly',
-        'Day': '',
-        'Timeshift': '',
-        'Venue': ''
-    },
-    {
-        'UnitCode': 'SIT 202',
-        'Lecturer': 'Miss Becky J.',
-        'Day': '',
-        'Timeshift': '',
-        'Venue': ''
-    },
-    {
-        'UnitCode': 'K24 311',
-        'Lecturer': 'Rev Teresiah',
-        'Day': '',
-        'Timeshift': '',
-        'Venue': ''
-    },
-    {
-        'UnitCode': 'SPH 340',
-        'Lecturer': 'Mrs. Martha',
-        'Day': '',
-        'Timeshift': '',
-        'Venue': ''
+function saveLecture() {
+    var unit_code = $('#unit-code').val();
+    var lecturer = $('#lecturer').val();
+    if (unit_code == "" || lecturer == "") {
+        console.log("unit_code:" + unit_code + "\nlecturer:" + lecturer);
+        return;
     }
-]
+    document.getElementById('lectures_table').hidden = false;
+    $('#lectures_form').submit(function (e) {
+        e.preventDefault();
+    });
 
-const tabletitles = ['Unit Code', 'Lecturer', 'Day', 'Timeshift', 'Venue'];
-const timeshifts = ['Dawn', 'Morning', 'Noon', 'Evening'];
-const venues = ['1PL1', '2PL2', '3PL3', '1PL4', '2PL6'];
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-
-let thead = document.getElementById('thead');
-thead.innerHTML = `<tr><td>${tabletitles[0]}</td><td>${tabletitles[1]}</td><td>${tabletitles[2]}</td><td>${tabletitles[3]}</td><td>${tabletitles[4]}</td></tr>`
-
-
-//showdata(curriculum)
-
-
-/* function showdata(data) {
-    var tbody = document.getElementById('tbody');
-
-    for (let i = 0; i < data.length; i++) {
-
-        const assignday = Math.floor(Math.random() * days.length);
-        data[i].Day = days[assignday];
-
-        const assigntimeshift = Math.floor(Math.random() * timeshifts.length);
-        data[i].Timeshift = timeshifts[assigntimeshift];
-
-        const assignvenue = Math.floor(Math.random() * venues.length);
-        data[i].Venue = venues[assignvenue];
-
-        const lecture = `<tr>
-                            <td>${data[i].UnitCode}
-                            <td>${data[i].Lecturer}
-                            <td>${data[i].Day}
-                            <td>${data[i].Timeshift}
-                            <td>${data[i].Venue}
-                        </tr>`
-        tbody.innerHTML += lecture
+    var timeshifts = $('#timeshift-constraint').find('input:checkbox:checked');
+    //console.log("Timeshifts:\n")
+    var arrTimeshifts = "";
+    for (let i = 0; i < timeshifts.length; i++) {
+        arrTimeshifts += timeshifts[i].id;
+        if (i < timeshifts.length - 1) {
+            arrTimeshifts += ",";
+        }
     }
-} */
-function loadDefaults(x) {
-    console.log("loading defaults");
+    ////console.log(arrTimeshifts);
+    var venues = $('#venue-constraint').find('input:checkbox:checked');
+    //console.log("Venues:\n")
+    var arrVenues = "";
+    for (let i = 0; i < venues.length; i++) {
+        arrVenues += venues[i].id;
+        if (i < venues.length - 1) {
+            arrVenues += ",";
+        }
+    } ////console.log(arrVenues);
+    var days = $('#day-constraint').find('input:checkbox:checked');
+    //console.log("Days:\n")
+    var arrDays = "";
+    for (let i = 0; i < days.length; i++) {
+        arrDays += days[i].id;
+        if (i < days.length - 1) {
+            arrDays += ",";
+        }
+    } ////console.log(arrDays);
+    $('#lectures_form').trigger("reset");
+    var n_lectures = $("#lectures_table tbody tr").length + 1;
+    $('#lectures_table > tbody:last-child').append('<tr><td>' + n_lectures + '</td><td>' + unit_code +
+        '</td><td>' + lecturer + '</td><td>' + arrTimeshifts + "," + arrVenues + "," + arrDays + '</td><</tr>');
+
+    //
     var xmlhttp;
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -111,7 +56,28 @@ function loadDefaults(x) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var response = xmlhttp.responseText;
             // code when server responds
-            console.log(response);
+            //console.log(response);
+        }
+    };
+    xmlhttp.open("GET", "saveSettings.php?unit_code=" + unit_code + "&lecturer=" + lecturer +
+        "&timeshifts=" + arrTimeshifts + "&venues=" + arrVenues + "&days=" + arrDays, true);
+    xmlhttp.send();
+}
+function loadDefaults(x) {
+    //console.log("loading defaults");
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var response = xmlhttp.responseText;
+            // code when server responds
+            //console.log(response);
             if (x == "venue") $("#venue-constraint").html(response);
             else if (x == "day") $("#day-constraint").html(response);
             else if (x == "timeshift") $("#timeshift-constraint").html(response);
@@ -122,7 +88,7 @@ function loadDefaults(x) {
 }
 function addSetting(setting) {
     if (setting == "timeshifts") {
-        console.log("timeshifts");
+        //console.log("timeshifts");
         $("#timeshift_form").submit(function (e) {
             e.preventDefault();
         });
@@ -131,7 +97,7 @@ function addSetting(setting) {
         if (x === "") {
             return;
         }
-        console.log("You entered " + x)
+        //console.log("You entered " + x)
         // Save to database
         var n_sessions = $("#timeshift_table tbody tr").length + 1;
         // Ajax
@@ -150,7 +116,7 @@ function addSetting(setting) {
                 var response = xmlhttp.responseText;
                 // code when server responds
                 message = response.substring(0, 7);
-                console.log(response);
+                //console.log(response);
                 if (message == servercodes[0]) {// If no error occured
                     // Add the value to table
                     $('#timeshift_table > tbody:last-child').append('<tr><td>' + n_sessions + '</td><td>' + x + '</td></tr>');
@@ -189,7 +155,7 @@ function addSetting(setting) {
                 var response = xmlhttp.responseText;
                 // code when server responds
                 message = response.substring(0, 7);
-                console.log(response);
+                //console.log(response);
                 if (message == servercodes[0]) {// If no error occured
                     // Add the value to table
                     $('#venues_table > tbody:last-child').append('<tr><td>' + n_sessions + '</td><td>' + x + '</td></tr>');
@@ -228,7 +194,7 @@ function addSetting(setting) {
                 var response = xmlhttp.responseText;
                 // code when server responds
                 message = response.substring(0, 7);
-                console.log(response);
+                //console.log(response);
                 if (message == servercodes[0]) {// If no error occured
                     // Add the value to table
                     $('#days_table > tbody:last-child').append('<tr><td>' + n_sessions + '</td><td>' + x + '</td></tr>');
