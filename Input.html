@@ -13,11 +13,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/025184af48.js" crossorigin="anonymous"></script>
 
-        <script src="script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
         <script>
             $(document).ready(function () {
+                loadDefaults("day"); loadDefaults("venue"); loadDefaults("timeshift");
                 $("#ex1 a").click(function (e) {
                     e.preventDefault();
                     $(this).tab("show");
@@ -123,49 +124,17 @@
             </div>
         </div>
         <div class="finaltimetable">
-            <!-- <table class="table table-hover table-striped align-middle mb-0 bg-white">
-                    <thead class="bg-black text-white" id="thead">
-                    </thead>
-                    <tbody id="tbody">
-                    </tbody>
-                </table> -->
             <div class="entry">
-                <!-- <div id="exTab1" class="container">	
-                    <ul  class="nav nav-pills">
-                        <li class="active">
-                            <a  href="#1a" data-toggle="tab">Overview</a>
-                        </li>
-                        <li>
-                            <a href="#2a" data-toggle="tab">Using nav-pills</a>
-                        </li>
-                        <li>
-                            <a href="#3a" data-toggle="tab">Applying clearfix</a>
-                        </li>
-                        <li>
-                            <a href="#4a" data-toggle="tab">Background color</a>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content clearfix">
-                        <div class="tab-pane active" id="1a">
-                            <h3>Content's background color is the same for the tab</h3>
-                        </div>
-                        <div class="tab-pane" id="2a">
-                            <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>
-                        </div>
-                        <div class="tab-pane" id="3a">
-                            <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
-                        </div>
-                        <div class="tab-pane" id="4a">
-                            <h3>We use css to change the background color of the content to be equal to the tab</h3>
-                        </div>
-                    </div>
-                </div> -->
                 <!-- Tabs navs -->
                 <ul class="nav nav-tabs nav-justified mb-3" id="ex1" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="ex3-tab-1" data-bs-target="#ex3-tabs-1" data-mdb-toggle="tab"
-                            href="#ex3-tabs-1" role="tab" aria-controls="ex3-tabs-1" aria-selected="true">Timeshifts</a>
+                        <a class="nav-link active" id="lecture" data-bs-target="#lectures" data-mdb-toggle="tab"
+                            href="#lectures" role="tab" aria-controls="lectures" aria-selected="true">Lectures</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="ex3-tab-1" data-bs-target="#ex3-tabs-1" data-mdb-toggle="tab"
+                            href="#ex3-tabs-1" role="tab" aria-controls="ex3-tabs-1"
+                            aria-selected="false">Timeshifts</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="ex3-tab-2" data-bs-target="#ex3-tabs-2" data-mdb-toggle="tab"
@@ -180,13 +149,57 @@
 
                 <!-- Tabs content -->
                 <div class="tab-content" id="ex2-content">
+                    <!-- Lecturers -->
+                    <div class="tab-pane fade show active" id="lectures" role="tabpanel" aria-labelledby="lecture">
+                        <form role="form" name="lectures" id="lectures_form" class="form row">
+                            <div class="lecture col-3">
+                                <div class="form-group">
+                                    <label for="unit-code">Unit Code</label>
+                                    <input type="text" name="unit-code" id="unit-code" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lecturer">Lecturer</label>
+                                    <input type="text" name="lecturer" id="lecturer" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="timeconstraint col-3">
+                                <label for="timeshift-constraint">Time not available</label>
+                                <div class="d-flex flex-column flex-nowrap form-group" id="timeshift-constraint">
+                                </div>
+                            </div>
+                            <div class="venueconstraint col-3">
+                                <label for="venue-constraint">Venues this lectures cannot take place</label>
+                                <div class="d-flex flex-column flex-nowrap form-group" id="venue-constraint">
+                                </div>
+                            </div>
+                            <div class="dayconstraint col-3">
+                                <label for="day-constraint">Day not available</label>
+                                <div id="day-constraint" class="form-group">
+                                </div>
+                            </div>
+                            <div class="form-group container col-4">
+                                <button class="clear form-control" type="reset">Clear</button>
+                                <input type="submit" onclick="saveLecture()" class="save form-control" value="Save" />
+                            </div>
+                        </form>
+                        <table class="table" id="lectures_table" hidden>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Unit Code</th>
+                                    <th scope="col">Lecturer</th>
+                                    <th scope="col">Constraints</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                     <!-- Timeshifts -->
-                    <div class="tab-pane fade show active" id="ex3-tabs-1" role="tabpanel" aria-labelledby="ex3-tab-1">
+                    <div class="tab-pane fade" id="ex3-tabs-1" role="tabpanel" aria-labelledby="ex3-tab-1">
                         <h2>Enter the timeshifts</h2>
                         <form role="form" class="form row" id="timeshift_form">
                             <div class="form-group col-8">
-                                <div class="input-group">
-                                    <input type="text"
+                                <div class="input-group"><input type="text"
                                         placeholder="Enter the session e.g 08:00-10:00" id="session_time"
                                         name="session_time" class="form-control rounded-0" required />
                                 </div>
@@ -208,59 +221,52 @@
                     </div>
                     <!-- Venues -->
                     <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
-                        <div class="tab-pane fade show active" id="ex3-tabs-2" role="tabpanel"
-                            aria-labelledby="ex3-tab-2">
-                            <h2>Enter the venues</h2>
-                            <form role="form" class="form row" id="venues_form">
-                                <div class="form-group col-8">
-                                    <div class="input-group"><input type="text" placeholder="Enter the venue e.g ADB2"
-                                            id="session_venue" name="session_venue" class="form-control rounded-0"
-                                            required />
-                                    </div>
+                        <h2>Enter the venues</h2>
+                        <form role="form" class="form row" id="venues_form">
+                            <div class="form-group col-8">
+                                <div class="input-group"><input type="text" placeholder="Enter the venue e.g ADB2"
+                                        id="session_venue" name="session_venue" class="form-control rounded-0"
+                                        required />
                                 </div>
-                                <div class="form-group col-4">
-                                    <input type="button" onclick="addSetting('venues')"
-                                        class="btn btn-primary form-control" value="Add" name="add_venue" />
-                                </div>
-                            </form>
-                            <table class="table" id="venues_table" hidden>
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Venues</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <input type="button" onclick="addSetting('venues')" class="btn btn-primary form-control"
+                                    value="Add" name="add_venue" />
+                            </div>
+                        </form>
+                        <table class="table" id="venues_table" hidden>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Venues</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
                     <!-- Days -->
                     <div class="tab-pane fade" id="ex3-tabs-3" role="tabpanel" aria-labelledby="ex3-tab-3">
-                        <div class="tab-pane fade show active" id="ex3-tabs-3" role="tabpanel"
-                            aria-labelledby="ex3-tab-3">
-                            <h2>Enter the days</h2>
-                            <form role="form" class="form row" id="days_form">
-                                <div class="form-group col-8">
-                                    <div class="input-group"><input type="text" placeholder="Enter the day e.g Monday"
-                                            id="session_day" name="session_day" class="form-control rounded-0"
-                                            required />
-                                    </div>
+                        <h2>Enter the days</h2>
+                        <form role="form" class="form row" id="days_form">
+                            <div class="form-group col-8">
+                                <div class="input-group"><input type="text" placeholder="Enter the day e.g Monday"
+                                        id="session_day" name="session_day" class="form-control rounded-0" required />
                                 </div>
-                                <div class="form-group col-4">
-                                    <input type="button" onclick="addSetting('days')"
-                                        class="btn btn-primary form-control" value="Add" name="add_day" />
-                                </div>
-                            </form>
-                            <table class="table" id="days_table" hidden>
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Days</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
+                            </div>
+                            <div class="form-group col-4">
+                                <input type="button" onclick="addSetting('days')" class="btn btn-primary form-control"
+                                    value="Add" name="add_day" />
+                            </div>
+                        </form>
+                        <table class="table" id="days_table" hidden>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Days</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- Tabs content -->
