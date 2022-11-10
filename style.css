@@ -18,8 +18,8 @@ li {
     top: 0%;
     justify-content: space-between;
     align-items: center;
-    height: 5rem;
-    background-color: #000;
+    height: 3rem;
+    background-color:#000;
 }
 
 .menuactions {
@@ -71,7 +71,7 @@ li {
 }
 
 .sidemenu {
-    position: absolute;
+    position: fixed;
     width: 17.5%;
     height: 100%;
     background-color: #000;

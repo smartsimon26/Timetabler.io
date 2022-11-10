@@ -29,15 +29,20 @@ if (isset($_GET["timeshift"])) {
     } catch (PDOException $e) {
         echo "FAILED:" . $e->getMessage();
     }
-} elseif (isset($_GET["venue"])) {
-    $venue = $_GET["venue"];
+    //Setting venue details
+} elseif (isset($_GET["venue_name"])) {
+    $venue_name = $_GET["venue_name"];
+    $venue_category = $_GET["venue_category"];
+    $venue_capacity = $_GET["venue_capacity"];
     try {
-        $sql = "CREATE TABLE IF NOT EXISTS `timetabler`.`venues` ( `id` INT NOT NULL AUTO_INCREMENT , `venue` VARCHAR(20) NOT NULL , 
+        $sql = "CREATE TABLE IF NOT EXISTS `timetabler`.`venues` ( `id` INT NOT NULL AUTO_INCREMENT , `venue` VARCHAR(20) NOT NULL , `category` VARCHAR(30) NOT NULL ,  `capacity` INT(4) NOT NULL ,
         PRIMARY KEY (`id`), UNIQUE (`venue`)) ENGINE = InnoDB;";
         $conn->exec($sql);
-        $sql = "INSERT INTO venues(venue)VALUES(:venue)";
+        $sql = "INSERT INTO venues(venue, category, capacity)VALUES(:venue, :category, :capacity)";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(":venue", $venue);
+        $stmt->bindParam(":venue", $venue_name);
+        $stmt->bindParam(":category", $venue_category);
+        $stmt->bindParam(":capacity", $venue_capacity);
         $stmt->execute();
         echo "SUCCESS";
         $conn = null;
@@ -66,20 +71,20 @@ if (isset($_GET["timeshift"])) {
     $venues = $_GET['venues'];
     $days = $_GET['days'];
     foreach ($_GET as $key => $value) {
-        echo $key . ",," . $value . "\n";
+        echo $key . ", ," . $value . "\n";
     }
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `timetabler`.`lectures` ( `id` INT NOT NULL AUTO_INCREMENT , 
-        `unit_code` VARCHAR(20) NOT NULL , `lecturer` VARCHAR(30) NOT NULL, `timeshifts` VARCHAR(50), 
-        `venues` VARCHAR(50), `days` VARCHAR(50), PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+        `unit_code` VARCHAR(20) NOT NULL , `lecturer` VARCHAR(30) NOT NULL, `constraint_timeshift` VARCHAR(50), 
+        `constraint_venue_category` VARCHAR(50), `constraint_days` VARCHAR(50), `Allocated_Day` VARCHAR(50), `Allocated_Timeshift` VARCHAR(50), `Allocated_Venue` VARCHAR(50), PRIMARY KEY (`id`)) ENGINE = InnoDB;";
         $conn->exec($sql);
-        $sql = "INSERT INTO lectures(`unit_code`,`lecturer`,`timeshifts`,`venues`,`days`)VALUES(:unit_code,:lecturer,:timeshifts,:venues,:days)";
+        $sql = "INSERT INTO lectures(`unit_code`,`lecturer`,`constraint_timeshift`,`constraint_venue_category`,`constraint_days`)VALUES(:unit_code,:lecturer,:constraint_timeshift,:constraint_venue_category,:constraint_days)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":unit_code", $unit_code);
         $stmt->bindParam(":lecturer", $lecturer);
-        $stmt->bindParam(":timeshifts", $timeshifts);
-        $stmt->bindParam(":venues", $venues);
-        $stmt->bindParam(":days", $days);
+        $stmt->bindParam(":constraint_timeshift", $timeshifts);
+        $stmt->bindParam(":constraint_venue_category", $venues);
+        $stmt->bindParam("constraint_days", $days);
         $stmt->execute();
         echo "SUCCESS";
         $conn = null;

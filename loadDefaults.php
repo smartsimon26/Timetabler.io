@@ -80,7 +80,7 @@ try {
                 $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`timeshifts` ( `id` INT NOT NULL AUTO_INCREMENT , `timeshift` VARCHAR(20) NOT NULL , 
     PRIMARY KEY (`id`), UNIQUE (`timeshift`)) ENGINE = InnoDB;");
                 $conn->exec(
-                    "INSERT INTO `timeshifts` (`timeshift`) VALUES('08:00-10:00'),('11:00-01:00'),('01:00-03:00'),('03:00-05:00');"
+                    "INSERT INTO `timeshifts` (`timeshift`) VALUES('Dawn'),('Morning'),('Afternon'),('Evening');"
                 );
                 $stmt = $conn->prepare(
                     "SELECT timeshift from timeshifts order by id"
@@ -101,16 +101,16 @@ try {
     elseif ($_GET["value"] == "venue") {
         $stmt;
         try {
-            $stmt = $conn->prepare("SELECT venue from venues order by id");
+            $stmt = $conn->prepare("SELECT category from venues order by id");
             $stmt->execute();
         } catch (PDOException $e) { // If table doesn't exist it is created
             if ($e->errorInfo[1] == 1146) {
-                $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`venues` ( `id` INT NOT NULL AUTO_INCREMENT , `venue` VARCHAR(20) NOT NULL , 
+                $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`venues` ( `id` INT NOT NULL AUTO_INCREMENT , `venue` VARCHAR(20) NOT NULL , `category` VARCHAR(30) NOT NULL ,  `capacity` INT(4) NOT NULL ,
         PRIMARY KEY (`id`), UNIQUE (`venue`)) ENGINE = InnoDB;");
                 $conn->exec(
-                    "INSERT INTO `venues` (`venue`) VALUES('ADB1'),('ADB2'),('COMP1'),('COMP2'),('EC1'),('EC2'),('EC3'),('MPH');"
+                    "INSERT INTO `venues` (`venue`, `category`, `capacity`) VALUES('ADB 202','ADB Building',200),('ADB Gen Lab','Computer Labs',50),('ADB 303','High Floor',150),('EEE 2','Engineering Labs',50),('FD12','F & D Workshops',25),('PF1L1','Pioneer Building',70);"
                 );
-                $stmt = $conn->prepare("SELECT venue from venues order by id");
+                $stmt = $conn->prepare("SELECT category from venues order by id");
                 $stmt->execute();
             }
         }

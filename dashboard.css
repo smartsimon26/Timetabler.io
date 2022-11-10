@@ -230,7 +230,7 @@ end of horizontal na styling
     width: 95%;
 }
 .tabpane{
-    background-color: #000;
+    background-color: #000 !important;
 }
 .tabcontent{
     width: 95%;

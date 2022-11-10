@@ -8,7 +8,7 @@
         <title>Timetabler</title>
         <link rel="stylesheet" href="style.css">
 
-        <link rel="shortcut icon" href="/Assets/Photos/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="Assets/Photos/favicon.png" type="image/x-icon">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/025184af48.js" crossorigin="anonymous"></script>
@@ -45,7 +45,7 @@
                 <div class="theme shadow"><i class="fa fa-adjust"></i></div>
                 <div class="settings shadow"><i class="fa fa-gear"></i></div>
                 <div class="notifications shadow"><i class="fa fa-bell"></i></div>
-                <div class="profile shadow"><img src="/Assets/Photos/Smart_Simon-removebg-preview (1).png" alt=""></div>
+                <div class="profile shadow"><img src="Assets/Photos/Smart_Simon-removebg-preview (1).png" alt=""></div>
             </div>
         </nav>
         <aside>
@@ -129,20 +129,20 @@
                 <ul class="nav nav-tabs nav-justified mb-3" id="ex1" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="lecture" data-bs-target="#lectures" data-mdb-toggle="tab"
-                            href="#lectures" role="tab" aria-controls="lectures" aria-selected="true">Lectures</a>
+                            href="#lectures" role="tab" aria-controls="lectures" aria-selected="true">Edit Lectures</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="ex3-tab-1" data-bs-target="#ex3-tabs-1" data-mdb-toggle="tab"
                             href="#ex3-tabs-1" role="tab" aria-controls="ex3-tabs-1"
-                            aria-selected="false">Timeshifts</a>
+                            aria-selected="false">Edit Timeshifts</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="ex3-tab-2" data-bs-target="#ex3-tabs-2" data-mdb-toggle="tab"
-                            href="#ex3-tabs-2" role="tab" aria-controls="ex3-tabs-2" aria-selected="false">Venues</a>
+                            href="#ex3-tabs-2" role="tab" aria-controls="ex3-tabs-2" aria-selected="false">Edit Venues</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="ex3-tab-3" data-bs-target="#ex3-tabs-3" data-mdb-toggle="tab"
-                            href="#ex3-tabs-3" role="tab" aria-controls="ex3-tabs-3" aria-selected="false">Days</a>
+                            href="#ex3-tabs-3" role="tab" aria-controls="ex3-tabs-3" aria-selected="false">Edit Days</a>
                     </li>
                 </ul>
                 <!-- Tabs navs -->
@@ -163,17 +163,17 @@
                                 </div>
                             </div>
                             <div class="timeconstraint col-3">
-                                <label for="timeshift-constraint">Time not available</label>
+                                <label for="timeshift-constraint">Avoid Timeshift</label>
                                 <div class="d-flex flex-column flex-nowrap form-group" id="timeshift-constraint">
                                 </div>
                             </div>
                             <div class="venueconstraint col-3">
-                                <label for="venue-constraint">Venues this lectures cannot take place</label>
+                                <label for="venue-constraint">Avoid Venue</label>
                                 <div class="d-flex flex-column flex-nowrap form-group" id="venue-constraint">
                                 </div>
                             </div>
                             <div class="dayconstraint col-3">
-                                <label for="day-constraint">Day not available</label>
+                                <label for="day-constraint">Avoid Day</label>
                                 <div id="day-constraint" class="form-group">
                                 </div>
                             </div>
@@ -221,13 +221,19 @@
                     </div>
                     <!-- Venues -->
                     <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
-                        <h2>Enter the venues</h2>
-                        <form role="form" class="form row" id="venues_form">
-                            <div class="form-group col-8">
-                                <div class="input-group"><input type="text" placeholder="Enter the venue e.g ADB2"
-                                        id="session_venue" name="session_venue" class="form-control rounded-0"
+                        <h2 class="mb-3">Enter the venues</h2>
+                        <form role="form" class="form d-flex flex-column justify-content-center align-items-center" id="venues_form">
+                            <div class="form-group col-8 d-flex">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Enter the venue e.g ADB2"
+                                        id="venue_name" name="venue_name" class="form-control rounded-0"
                                         required />
+                                    <input type="text" placeholder="Describe venue eg. Comp Lab"
+                                    id="venue_category" name="venue_category" class="form-control rounded-0"
+                                    required />
+                                    <input type="number" name="venue_capacity" id="venue_capacity" class="form-control rounded-0" required>
                                 </div>
+                            </div>
                             </div>
                             <div class="form-group col-4">
                                 <input type="button" onclick="addSetting('venues')" class="btn btn-primary form-control"
@@ -238,7 +244,9 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Venues</th>
+                                    <th scope="col">Room</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Capacity</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -249,7 +257,8 @@
                         <h2>Enter the days</h2>
                         <form role="form" class="form row" id="days_form">
                             <div class="form-group col-8">
-                                <div class="input-group"><input type="text" placeholder="Enter the day e.g Monday"
+                                <div class="input-group">
+                                    <input type="text" placeholder="Enter the day e.g Monday"
                                         id="session_day" name="session_day" class="form-control rounded-0" required />
                                 </div>
                             </div>
