@@ -164,7 +164,7 @@ function addSetting(setting) {
     var venue_name = $("#venue_name").val();
     var venue_category = $("#venue_category").val();
     var venue_capacity = $("#venue_capacity").val();
-    if (venue_name || venue_category || venue_capacity === "") {
+    if (venue_name === "" || venue_category === "" || venue_capacity === "") {
       return;
     }
     console.log(

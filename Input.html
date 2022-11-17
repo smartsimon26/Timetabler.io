@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Timetabler</title>
+        <title>Edits | Timetabler</title>
         <link rel="stylesheet" href="style.css">
 
         <link rel="shortcut icon" href="Assets/Photos/favicon.png" type="image/x-icon">
@@ -52,13 +52,13 @@
             <div class="sidemenu">
                 <div class="logo">
                     <div class="logos">
-                        <i class="fas fa-snowflake"></i>
+                        <a href="dashboard.html" class="white" rel="noopener noreferrer"><i class="fas fa-snowflake"></i></a>
                         <h2>auto</h2>
                     </div>
                 </div>
                 <div class="navlinks">
                     <div class="navlink home"><i class="fa fa-home" aria-hidden="true"></i>
-                        <li><a href="index.html" class="white" rel="noopener noreferrer"> Home </a></li>
+                        <li><a href="dashboard.html" class="white" rel="noopener noreferrer"> Home </a></li>
                     </div>
                     <div class="navlink analytics"><i class="fa fa-chart-line"></i>
                         <li>Analytics</i></li>
@@ -128,11 +128,11 @@
                 <!-- Tabs navs -->
                 <ul class="nav nav-tabs nav-justified mb-3" id="ex1" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="lecture" data-bs-target="#lectures" data-mdb-toggle="tab"
+                        <a class="nav-link active black" id="lecture" data-bs-target="#lectures" data-mdb-toggle="tab"
                             href="#lectures" role="tab" aria-controls="lectures" aria-selected="true">Edit Lectures</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="ex3-tab-1" data-bs-target="#ex3-tabs-1" data-mdb-toggle="tab"
+                        <a class="nav-link black" id="ex3-tab-1" data-bs-target="#ex3-tabs-1" data-mdb-toggle="tab"
                             href="#ex3-tabs-1" role="tab" aria-controls="ex3-tabs-1"
                             aria-selected="false">Edit Timeshifts</a>
                     </li>
@@ -177,9 +177,9 @@
                                 <div id="day-constraint" class="form-group">
                                 </div>
                             </div>
-                            <div class="form-group container col-4">
+                            <div class="form-group container col-4 d-flex mt-3 ">
                                 <button class="clear form-control" type="reset">Clear</button>
-                                <input type="submit" onclick="saveLecture()" class="save form-control" value="Save" />
+                                <input type="submit" onclick="saveLecture()" class="save form-control bg-dark white" value="Save" />
                             </div>
                         </form>
                         <table class="table" id="lectures_table" hidden>
@@ -233,7 +233,6 @@
                                     required />
                                     <input type="number" name="venue_capacity" id="venue_capacity" class="form-control rounded-0" required>
                                 </div>
-                            </div>
                             </div>
                             <div class="form-group col-4">
                                 <input type="button" onclick="addSetting('venues')" class="btn btn-primary form-control"
