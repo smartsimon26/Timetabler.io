@@ -19,7 +19,7 @@ li {
     justify-content: space-between;
     align-items: center;
     height: 3rem;
-    background-color:#000;
+    background-color: #000;
 }
 
 .menuactions {
@@ -232,8 +232,11 @@ li {
 }
 
 .white {
-    text-decoration: none;
     color: white !important;
+}
+
+.white :hover {
+    text-decoration: underline;
 }
 
 .no-border {
@@ -241,7 +244,4 @@ li {
     border-right-style: hidden;
     border-left-style: hidden;
     border-bottom-style: groove;
-}
-#ex1{
-    color:#000;
 }
