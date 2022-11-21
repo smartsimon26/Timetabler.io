@@ -42,18 +42,18 @@ function saveLecture() {
   var n_lectures = $("#lectures_table tbody tr").length + 1;
   $("#lectures_table > tbody:last-child").append(
     "<tr><td>" +
-      n_lectures +
-      "</td><td>" +
-      unit_code +
-      "</td><td>" +
-      lecturer +
-      "</td><td>" +
-      arrTimeshifts +
-      "," +
-      arrVenues +
-      "," +
-      arrDays +
-      "</td><</tr>"
+    n_lectures +
+    "</td><td>" +
+    unit_code +
+    "</td><td>" +
+    lecturer +
+    "</td><td>" +
+    arrTimeshifts +
+    "," +
+    arrVenues +
+    "," +
+    arrDays +
+    "</td><</tr>"
   );
 
   //
@@ -75,15 +75,15 @@ function saveLecture() {
   xmlhttp.open(
     "GET",
     "saveSettings.php?unit_code=" +
-      unit_code +
-      "&lecturer=" +
-      lecturer +
-      "&timeshifts=" +
-      arrTimeshifts +
-      "&venues=" +
-      arrVenues +
-      "&days=" +
-      arrDays,
+    unit_code +
+    "&lecturer=" +
+    lecturer +
+    "&timeshifts=" +
+    arrTimeshifts +
+    "&venues=" +
+    arrVenues +
+    "&days=" +
+    arrDays,
     true
   );
   xmlhttp.send();
@@ -106,6 +106,11 @@ function loadDefaults(x) {
       if (x == "venue") $("#venue-constraint").html(response);
       else if (x == "day") $("#day-constraint").html(response);
       else if (x == "timeshift") $("#timeshift-constraint").html(response);
+      else if (x == "lec") {
+        //document.getElementById("lectures_table").hidden = false;
+        $("#lectures_table > tbody:last-child").append(response);
+        
+      }
     }
   };
   xmlhttp.open("GET", "loadDefaults.php?value=" + x, true);
@@ -164,7 +169,7 @@ function addSetting(setting) {
     var venue_name = $("#venue_name").val();
     var venue_category = $("#venue_category").val();
     var venue_capacity = $("#venue_capacity").val();
-    if (venue_name === "" || venue_category === "" || venue_capacity === "") {
+    if (venue_name == "" || venue_category == "" || venue_capacity === "") {
       return;
     }
     console.log(
@@ -196,14 +201,14 @@ function addSetting(setting) {
           // Add the value to table
           $("#venues_table > tbody:last-child").append(
             "<tr><td>" +
-              n_sessions +
-              "</td><td>" +
-              venue_name +
-              "</td><td>" +
-              venue_category +
-              "</td><td>" +
-              venue_capacity +
-              "</td></tr>"
+            n_sessions +
+            "</td><td>" +
+            venue_name +
+            "</td><td>" +
+            venue_category +
+            "</td><td>" +
+            venue_capacity +
+            "</td></tr>"
           );
           $("#session_venue").val("");
         }
@@ -212,11 +217,11 @@ function addSetting(setting) {
     xmlhttp.open(
       "GET",
       "saveSettings.php?venue_name=" +
-        venue_name +
-        "&venue_category=" +
-        venue_category +
-        "&venue_capacity=" +
-        venue_capacity,
+      venue_name +
+      "&venue_category=" +
+      venue_category +
+      "&venue_capacity=" +
+      venue_capacity,
       true
     );
     xmlhttp.send();

@@ -245,3 +245,10 @@ li {
     border-left-style: hidden;
     border-bottom-style: groove;
 }
+
+.tt {
+    margin: auto;
+    margin-top: 5em;
+    width: 70em;
+    height: 20em;
+}

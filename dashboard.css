@@ -127,9 +127,6 @@ li {
     height: 100%;
     position: relative;
 }
-.search input{
-    width:10rem;
-}
 .menubuttons{
     display: flex;
     flex-wrap: nowrap;

@@ -29,6 +29,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
             loadDefaults("day");
             loadDefaults("venue");
             loadDefaults("timeshift");
+            loadDefaults("lec");
             $("#ex1 a").click(function(e) {
                 e.preventDefault();
                 $(this).tab("show");
@@ -188,17 +189,19 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                             <input type="submit" onclick="saveLecture()" class="save form-control" value="Save" />
                         </div>
                     </form>
-                    <table class="table" id="lectures_table" hidden>
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Unit Code</th>
-                                <th scope="col">Lecturer</th>
-                                <th scope="col">Constraints</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    <div class="overflow-auto tt">
+                        <table id="lectures_table" class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Unit Code</th>
+                                    <th scope="col">Lecturer</th>
+                                    <th scope="col">Constraints</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- Timeshifts -->
                 <div class="tab-pane fade" id="ex3-tabs-1" role="tabpanel" aria-labelledby="ex3-tab-1">

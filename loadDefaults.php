@@ -60,10 +60,8 @@ try {
         }
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        foreach (
-            new TableRows(new RecursiveArrayIterator($stmt->fetchAll()))
-            as $k => $v
-        ) {
+        foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll()))
+            as $k => $v) {
             echo $v;
         }
     }
@@ -90,10 +88,8 @@ try {
         }
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        foreach (
-            new TableRows(new RecursiveArrayIterator($stmt->fetchAll()))
-            as $k => $v
-        ) {
+        foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll()))
+            as $k => $v) {
             echo $v;
         }
     }
@@ -116,16 +112,37 @@ try {
         }
         // set the resulting array to associative
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        foreach (
-            new TableRows(new RecursiveArrayIterator($stmt->fetchAll()))
-            as $k => $v
-        ) {
+        foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll()))
+            as $k => $v) {
             echo $v;
+        }
+    }
+    //lectures
+    elseif ($_GET["value"] == "lec") {
+        $stmt;
+        try {
+            /*$stmt = $conn->prepare("SELECT id,unit_code,lecturer,constraint_timeshift,
+            constraint_venue_category,constraint_days from lectures order by id");*/
+            $stmt = $conn->prepare("SELECT * from lectures order by id");
+            $stmt->execute();
+            // set the resulting array to associative
+            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll();
+            if ($result)
+                echo "rows\n";
+            foreach ($result as $row) {
+                echo "<tr><td>" . $row['id'] .
+                    "</td><td>" . $row['unit_code'] .
+                    "</td><td>" . $row['lecturer'] .
+                    "</td><td>" . $row['constraint_timeshift'] . "," . $row['constraint_venue_category'] . ","
+                    . $row['constraint_days'] . "</td></tr>";
+                //echo $row['unit_code'];
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
     }
     $conn = null;
 } catch (PDOException $e) {
     echo "FAILED:" . $e->getMessage();
 }
-
-?>
