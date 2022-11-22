@@ -233,10 +233,11 @@ li {
 
 .white {
     color: white !important;
+    text-decoration: none;
 }
 
-.white :hover {
-    text-decoration: underline;
+.white:hover {
+    text-decoration: underline !important;
 }
 
 .no-border {
@@ -246,9 +247,18 @@ li {
     border-bottom-style: groove;
 }
 
-.tt {
+.tt,
+.final_timetable {
     margin: auto;
     margin-top: 5em;
     width: 70em;
+}
+
+.tt {
     height: 20em;
+
+}
+
+.final_timetable {
+    height: 40em;
 }

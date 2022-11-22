@@ -13,11 +13,12 @@ class TableRows extends RecursiveIteratorIterator
 
     function current()
     {
-        return "<div class=\"form-group\"><label class=\"checkbox-inline\"><input type=\"checkbox\" id=\"" .
+        /*  return "<div class=\"form-group\"><label class=\"checkbox-inline\"><input type=\"checkbox\" id=\"" .
             parent::current() .
             "\">" .
             parent::current() .
-            "</label></div>";
+            "</label></div>"; */
+        return parent::current() . "|";
     }
 
     /* function beginChildren()
@@ -104,7 +105,7 @@ try {
                 $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`venues` ( `id` INT NOT NULL AUTO_INCREMENT , `venue` VARCHAR(20) NOT NULL , `category` VARCHAR(30) NOT NULL ,  `capacity` INT(4) NOT NULL ,
         PRIMARY KEY (`id`), UNIQUE (`venue`)) ENGINE = InnoDB;");
                 $conn->exec(
-                    "INSERT INTO `venues` (`venue`, `category`, `capacity`) VALUES('ADB 202','ADB Building',200),('ADB Gen Lab','Computer Labs',50),('ADB 303','High Floor',150),('EEE 2','Engineering Labs',50),('FD12','F & D Workshops',25),('PF1L1','Pioneer Building',70);"
+                    "INSERT INTO `venues` (`venue`, `category`, `capacity`) VALUES('ADB 202','ADB Building',200),('ADB Gen Lab','Computer Labs',50),('ADB 303','High Floor',150),('EEE 2','Engineering Labs',50),('FD12','F&D Workshops',25),('PF1L1','Pioneer Building',70);"
                 );
                 $stmt = $conn->prepare("SELECT category from venues order by id");
                 $stmt->execute();
@@ -134,12 +135,53 @@ try {
                 echo "<tr><td>" . $row['id'] .
                     "</td><td>" . $row['unit_code'] .
                     "</td><td>" . $row['lecturer'] .
-                    "</td><td>" . $row['constraint_timeshift'] . "," . $row['constraint_venue_category'] . ","
+                    "</td><td>" . $row['constraint_timeshift'] . ($row['constraint_timeshift'] == "" ? "" : ",") .
+                    $row['constraint_venue_category'] . ($row['constraint_venue_category'] == "" ? "" : ",")
                     . $row['constraint_days'] . "</td></tr>";
                 //echo $row['unit_code'];
             }
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            if ($e->errorInfo[1] == 1146) {
+                echo "FAILED: Please input lectures";
+            }
+        }
+    }
+    //timetable
+    elseif ($_GET["value"] == "timetable") {
+        $stmt;
+        try {
+            /*$stmt = $conn->prepare("SELECT id,unit_code,lecturer,constraint_timeshift,
+            constraint_venue_category,constraint_days from lectures order by id");*/
+            $stmt = $conn->prepare("SELECT id,unit_code,lecturer,constraint_timeshift,
+            constraint_venue_category,constraint_days from lectures order by no DESC");
+            $stmt->execute();
+            // set the resulting array to associative
+            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll();
+            $rows = "";
+            if ($result) {
+                $rows = "";
+                foreach ($result as $row) {
+                    echo  $row['id'] . "^"
+                        . $row['unit_code'] . "^"
+                        . $row['lecturer'] . "^"
+                        . "v^"
+                        . "t^"
+                        . "d^"
+                        . $row['constraint_timeshift'] . "|"
+                        . $row['constraint_venue_category'] . "|"
+                        . $row['constraint_days'] . "#";
+                    /*
+                        . ($row['constraint_timeshift'] == "" ? "" : ($row['constraint_timeshift'] . "|"))
+                        . ($row['constraint_venue_category'] == "" ? "" : ($row['constraint_venue_category'] . "|"))
+                        . ($row['constraint_days']) . "#";
+                        */
+                }
+            }
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1146) {
+                echo "FAILED: Input lectures";
+            }
         }
     }
     $conn = null;

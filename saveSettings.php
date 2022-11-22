@@ -76,15 +76,17 @@ if (isset($_GET["timeshift"])) {
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `timetabler`.`lectures` ( `id` INT NOT NULL AUTO_INCREMENT , 
         `unit_code` VARCHAR(20) NOT NULL , `lecturer` VARCHAR(30) NOT NULL, `constraint_timeshift` VARCHAR(50), 
-        `constraint_venue_category` VARCHAR(50), `constraint_days` VARCHAR(50), `Allocated_Day` VARCHAR(50), `Allocated_Timeshift` VARCHAR(50), `Allocated_Venue` VARCHAR(50), PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+        `constraint_venue_category` VARCHAR(50), `constraint_days` VARCHAR(50), `Allocated_Day` VARCHAR(50), `Allocated_Timeshift` VARCHAR(50), `Allocated_Venue` VARCHAR(50),`no` int(3) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;";
         $conn->exec($sql);
-        $sql = "INSERT INTO lectures(`unit_code`,`lecturer`,`constraint_timeshift`,`constraint_venue_category`,`constraint_days`)VALUES(:unit_code,:lecturer,:constraint_timeshift,:constraint_venue_category,:constraint_days)";
+        $sql = "INSERT INTO lectures(`unit_code`,`lecturer`,`constraint_timeshift`,`constraint_venue_category`,`constraint_days`,`no`)VALUES(:unit_code,:lecturer,:constraint_timeshift,:constraint_venue_category,:constraint_days,:_no)";
         $stmt = $conn->prepare($sql);
+        $num = count(explode(",", $days)) + count(explode(",", $venues)) + count(explode(",", $timeshifts));
         $stmt->bindParam(":unit_code", $unit_code);
         $stmt->bindParam(":lecturer", $lecturer);
         $stmt->bindParam(":constraint_timeshift", $timeshifts);
         $stmt->bindParam(":constraint_venue_category", $venues);
-        $stmt->bindParam("constraint_days", $days);
+        $stmt->bindParam(":constraint_days", $days);
+        $stmt->bindParam(":_no", $num);
         $stmt->execute();
         echo "SUCCESS";
         $conn = null;
@@ -92,4 +94,3 @@ if (isset($_GET["timeshift"])) {
         echo "FAILED:" . $e->getMessage();
     }
 }
-?>

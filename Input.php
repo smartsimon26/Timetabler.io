@@ -190,6 +190,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                         </div>
                     </form>
                     <div class="overflow-auto tt">
+                        <div class="text-danger error-msg" id="error-msg"></div>
                         <table id="lectures_table" class="table table-striped">
                             <thead class="thead-dark">
                                 <tr>
@@ -278,9 +279,6 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
             </div>
             <!-- Tabs content -->
         </div>
-    </div>
-
-    </div>
     </div>
 
 </body>
