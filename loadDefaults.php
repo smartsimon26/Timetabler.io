@@ -105,7 +105,7 @@ try {
                 $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`venues` ( `id` INT NOT NULL AUTO_INCREMENT , `venue` VARCHAR(20) NOT NULL , `category` VARCHAR(30) NOT NULL ,  `capacity` INT(4) NOT NULL ,
         PRIMARY KEY (`id`), UNIQUE (`venue`)) ENGINE = InnoDB;");
                 $conn->exec(
-                    "INSERT INTO `venues` (`venue`, `category`, `capacity`) VALUES('ADB 202','ADB Building',200),('ADB Gen Lab','Computer Labs',50),('ADB 303','High Floor',150),('EEE 2','Engineering Labs',50),('FD12','F&D Workshops',25),('PF1L1','Pioneer Building',70);"
+                    "INSERT INTO `venues` (`venue`, `category`, `capacity`) VALUES('ADB 202','ADB Building',200),('ADB Gen Lab','Computer Labs',50),('ADB 303','High Floor',150),('EEE 2','Engineering Labs',50),('FD12','F and D Workshops',25),('PF1L1','Pioneer Building',70);"
                 );
                 $stmt = $conn->prepare("SELECT category from venues order by id");
                 $stmt->execute();

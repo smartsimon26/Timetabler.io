@@ -247,18 +247,34 @@ li {
     border-bottom-style: groove;
 }
 
-.tt,
 .final_timetable {
-    margin: auto;
-    margin-top: 5em;
-    width: 70em;
+    height: 40em;
 }
 
 .tt {
     height: 20em;
-
 }
 
-.final_timetable {
-    height: 40em;
+.tt thead th,
+.final_timetable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
+
+.tt thead {
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+#download {
+    float: right;
+}
+
+/*.tt table {
+    border: 0;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+}
+
+ Just common table stuff. Really. */

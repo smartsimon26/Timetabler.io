@@ -15,8 +15,9 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="style.css" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
     <script src="https://kit.fontawesome.com/025184af48.js" crossorigin="anonymous"></script>
 
     <link rel="shortcut icon" href="Assets/Photos/favicon.png" type="image/x-icon">
@@ -130,23 +131,22 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
         </div>
     </div>
     <div class="finaltimetable">
-        <div class="timetable">
-
-            <div class="overflow-auto final_timetable">
-                <button class="btn btn-default" onclick="generateTimetable()">
-                    <i class="fa fa-refresh" aria-hidden="true"></i></button>
-                <div class="text-danger error-msg" id="error-msg">
-                </div>
-                <table id="final_table" class="table table-striped">
-                    <thead class="thead-dark">
+        <button class="btn btn-default" onclick="generateTimetable()">
+            <i class="fa fa-refresh" aria-hidden="true"></i></button>
+        <a href="#" id="download" hidden><i class="fa fa-download" aria-hidden="true"></i></a>
+        <div class="text-danger error-msg" id="error-msg"></div>
+        <div class="table-responsive final_timetable">
+            <div class="timetable">
+                <table id="final_table" class="table table-bordered table-hover">
+                    <thead class="thead-dark table-light">
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col" class="c">#</th>
                             <th scope="col">Unit Code</th>
                             <th scope="col">Lecturer</th>
                             <th scope="col">Venue</th>
                             <th scope="col">Timeshift</th>
                             <th scope="col">Day</th>
-                            <th scope="col">Constraints</th>
+                            <th scope="col" class="col-5">Constraints</th>
                         </tr>
                     </thead>
                     <tbody></tbody>

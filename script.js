@@ -2,6 +2,7 @@ var all_days = [];
 var all_timeshifts = [];
 var all_venues = [];
 function saveLecture() {
+  console.log("----");
   var unit_code = $("#unit-code").val();
   var lecturer = $("#lecturer").val();
   if (unit_code == "" || lecturer == "") {
@@ -22,7 +23,7 @@ function saveLecture() {
       arrTimeshifts += ",";
     }
   }
-  ////console.log(arrTimeshifts);
+  //console.log(arrTimeshifts + ":" + arrTimeshifts.length);
   var venues = $("#venue-constraint").find("input:checkbox:checked");
   //console.log("Venues:\n")
   var arrVenues = "";
@@ -31,7 +32,7 @@ function saveLecture() {
     if (i < venues.length - 1) {
       arrVenues += ",";
     }
-  } ////console.log(arrVenues);
+  } //console.log(arrVenues + ":" + arrVenues.length);
   var days = $("#day-constraint").find("input:checkbox:checked");
   //console.log("Days:\n")
   var arrDays = "";
@@ -40,7 +41,10 @@ function saveLecture() {
     if (i < days.length - 1) {
       arrDays += ",";
     }
-  } ////console.log(arrDays);
+  } //console.log(arrDays + ":" + arrDays.length);
+  //
+  //
+
   $("#lectures_form").trigger("reset");
   var n_lectures = $("#lectures_table tbody tr").length + 1;
   $("#lectures_table > tbody:last-child").append(
@@ -283,6 +287,42 @@ function addSetting(setting) {
     xmlhttp.send();
   }
 }
+function jsonToCsv(objArray) {
+  var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+  var str = '';
+  //body
+  for (var i = 0; i < array.length; i++) {
+    var line = '';
+    for (var index in array[i]) {
+      if (line != '') line += ','
+
+      line += array[i][index];
+    }
+
+    str += line + '\r\n';
+  }
+  console.log(str);
+  return str;
+}
+function downloadCSVFromJson(filename, arrayOfJson) {
+  // convert JSON to CSV
+  const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+  const header = Object.keys(arrayOfJson[0])
+  let csv = arrayOfJson.map(row => header.map(fieldName =>
+    JSON.stringify(row[fieldName], replacer)).join(','))
+  csv.unshift(header.join(','))
+  csv = csv.join('\r\n')
+
+  // Create link and download
+  var link = document.createElement('a');
+  link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv));
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 function generateTimetable() {
   $("#final_table tbody > tr").remove();
   var lec_obj = {
@@ -354,9 +394,16 @@ function generateTimetable() {
           (element.constraint.const_day.length == 0 ? '' : element.constraint.const_day);
         $("#final_table > tbody:last-child").append(row);
       });
+      //option for downloading JSON
+      document.getElementById('download').hidden = false;
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(final_lectures));
+      var dlAnchorElem = document.getElementById('download');
+      dlAnchorElem.setAttribute("href", dataStr);
+      dlAnchorElem.setAttribute("download", "lectures-timetable.json");
+
+      //downloadCSVFromJson('myCustomName.csv', final_lectures);
 
       console.log(final_lectures);
-
     }
   };
   xmlhttp.open("GET", "loadDefaults.php?value=timetable", true);
