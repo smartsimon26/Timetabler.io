@@ -122,7 +122,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'PeterNdungu', 'pndunguedu@gmail.com', '12345');
+(1, 'SmartSimon', 'ndungusimonm@gmail.com', '12345');
 
 -- --------------------------------------------------------
 
