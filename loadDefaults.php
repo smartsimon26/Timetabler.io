@@ -79,7 +79,7 @@ try {
                 $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`timeshifts` ( `id` INT NOT NULL AUTO_INCREMENT , `timeshift` VARCHAR(20) NOT NULL , 
     PRIMARY KEY (`id`), UNIQUE (`timeshift`)) ENGINE = InnoDB;");
                 $conn->exec(
-                    "INSERT INTO `timeshifts` (`timeshift`) VALUES('Dawn'),('Morning'),('Afternon'),('Evening');"
+                    "INSERT INTO `timeshifts` (`timeshift`) VALUES('Dawn'),('Morning'),('Afternoon'),('Evening');"
                 );
                 $stmt = $conn->prepare(
                     "SELECT timeshift from timeshifts order by id"

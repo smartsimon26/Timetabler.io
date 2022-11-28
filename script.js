@@ -370,23 +370,12 @@ function generateTimetable() {
 
       //loop through the JSON
       final_lectures.forEach(element => {
-        //for each object generate its position in the timetable
-        var _days = JSON.parse(JSON.stringify(all_days));
-        var _venues = JSON.parse(JSON.stringify(all_venues));
-        var _timeshifts = JSON.parse(JSON.stringify(all_timeshifts));
-        element.constraint.const_day.forEach(e => {
-          _days.splice(_days.indexOf(e), 1);
-        });
-        element.constraint.const_venue.forEach(e => {
-          _venues.splice(_venues.indexOf(e), 1);
-        });
-        element.constraint.const_time.forEach(e => {
-          _timeshifts.splice(_timeshifts.indexOf(e), 1);
-        });
+        populateLectures(element);
+      });
 
-        element.day = _days[Math.floor(Math.random() * _days.length)];
-        element.venue = _venues[Math.floor(Math.random() * _venues.length)];
-        element.timeshift = _timeshifts[Math.floor(Math.random() * _timeshifts.length)];
+      console.log(collisionCheck(final_lectures) ? "Collision detected and removed" : "");
+
+      final_lectures.forEach(element => {
         var row = "<tr><td>" + (final_lectures.indexOf(element) + 1) + "</td><td>" + element.unit_code + "</td><td>" +
           element.lecturer + "</td><td>" + element.venue + "</td><td>" + element.timeshift + "</td><td>" + element.day +
           "</td><td>" + (element.constraint.const_time.length == 0 ? '' : element.constraint.const_time + " ") +
@@ -394,6 +383,7 @@ function generateTimetable() {
           (element.constraint.const_day.length == 0 ? '' : element.constraint.const_day);
         $("#final_table > tbody:last-child").append(row);
       });
+
       //option for downloading JSON
       document.getElementById('download').hidden = false;
       var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(final_lectures));
@@ -409,6 +399,46 @@ function generateTimetable() {
   xmlhttp.open("GET", "loadDefaults.php?value=timetable", true);
   xmlhttp.send();
 
+}
+function populateLectures(element) {
+  //for each object generate its position in the timetable
+  var _days = JSON.parse(JSON.stringify(all_days));
+  var _venues = JSON.parse(JSON.stringify(all_venues));
+  var _timeshifts = JSON.parse(JSON.stringify(all_timeshifts));
+  element.constraint.const_day.forEach(e => {
+    _days.splice(_days.indexOf(e), 1);
+  });
+  element.constraint.const_venue.forEach(e => {
+    _venues.splice(_venues.indexOf(e), 1);
+  });
+  element.constraint.const_time.forEach(e => {
+    _timeshifts.splice(_timeshifts.indexOf(e), 1);
+  });
+
+  element.day = _days[Math.floor(Math.random() * _days.length)];
+  element.venue = _venues[Math.floor(Math.random() * _venues.length)];
+  element.timeshift = _timeshifts[Math.floor(Math.random() * _timeshifts.length)];
+  //console.log(element.day + "-" + element.venue + "-" + element.timeshift);
+  //console.log();
+  //collisionCheck(lectures); 
+  //return lectures; 
+}
+function collisionCheck(lectures) {
+  var collision_detected = false;
+  for (let i = 0; i < lectures.length; i++) {
+    const element = lectures[i];
+    for (let j = i + 1; j < lectures.length; j++) {
+      if (element.day == lectures[j].day && element.venue == lectures[j].venue && element.timeshift == lectures[j].timeshift) {
+        collision_detected = true;
+        console.log("Collision detected:" + element.unit_code + " & " + lectures[j].unit_code);
+        console.log("Removing collision");
+        populateLectures(element);
+      } else {
+        //console.log(element.unit_code + ": pass collision");
+      }
+    }
+  }
+  return collision_detected;
 }
 
 /*

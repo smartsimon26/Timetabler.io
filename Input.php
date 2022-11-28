@@ -18,11 +18,16 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
 
     <link rel="shortcut icon" href="Assets/Photos/favicon.png" type="image/x-icon">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/025184af48.js" crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
+    <link href="../../cdn/bootstrap.min.css" rel="stylesheet">
+    <link href="../../cdn/fontawesome/css/all.min.css" rel="stylesheet">
+    <script src="../../cdn/jQuery.js"></script>
+    <script src="../../cdn/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     <script>

@@ -10,7 +10,7 @@
             "const_time": [
                 "Dawn",
                 "Morning",
-                "Afternon"
+                "Afternoon"
             ],
             "const_venue": [
                 "ADB Building",
@@ -81,7 +81,7 @@
         "day": "Wednesday",
         "constraint": {
             "const_time": [
-                "Afternon",
+                "Afternoon",
                 "Evening"
             ],
             "const_venue": [
@@ -103,7 +103,7 @@
         "constraint": {
             "const_time": [
                 "Morning",
-                "Afternon"
+                "Afternoon"
             ],
             "const_venue": [
                 "High Floor",
@@ -123,7 +123,7 @@
         "day": "Tuesday",
         "constraint": {
             "const_time": [
-                "Afternon",
+                "Afternoon",
                 "Evening"
             ],
             "const_venue": [
@@ -138,7 +138,7 @@
         "id": "6",
         "unit_code": "SMA 112",
         "lecturer": "Mr Mugambi",
-        "timeshift": "Afternon",
+        "timeshift": "Afternoon",
         "venue": "Computer Labs",
         "day": "Thursday",
         "constraint": {
@@ -244,7 +244,7 @@
         "id": "14",
         "unit_code": "ECO 112",
         "lecturer": "Ms Mugeni",
-        "timeshift": "Afternon",
+        "timeshift": "Afternoon",
         "venue": "F and D Workshops",
         "day": "Thursday",
         "constraint": {
