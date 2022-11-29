@@ -150,9 +150,9 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                     <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
                     <button type="submit" name="export" class="border-0 bg-white me-1"><img src="Assets\Photos\excell logo.png" alt="Excell download" style="height: 2rem;"></button>
                 </form>
-                <form method="post" action="getpdf.php" id="pdf">
+                <form method="post" action="Final Timetable.php" id="pdf">
                     <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
-                    <button type="submit" name="export" class="border-0 bg-white"><img src="Assets\Photos\pdf logo.png" alt="pdf download" style="height: 2rem;"></button>
+                    <button type="submit" name="export" class="border-0 bg-white" target="_blank"><img src="Assets\Photos\pdf logo.png" alt="pdf download" style="height: 2rem;"></button>
                 </form>
             </div>     
         <div class="text-danger error-msg" id="error-msg"></div>
