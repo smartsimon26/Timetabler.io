@@ -6,6 +6,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +37,8 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
             loadDefaults("day");
             loadDefaults("venue");
             loadDefaults("timeshift");
+            // $('#dtBasicExample').DataTable(); 
+            // $('.dataTables_length').addClass('bs-select');
         });
     </script>
 </head>
@@ -82,9 +85,11 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                 <div class="navlink edit"><i class="fa fa-sliders" aria-hidden="true"></i>
                     <li><a href="input.php" class="white" rel="noopener noreferrer"> Edit Data </a></li>
                 </div>
-                <div class="navlink create"><i class="fa fa-calendar-days"></i>
+                <!-- <div class="navlink create"><i class="fa fa-calendar-days" onclick="generateTimetable()"></i>
                     <li><a href="#" class="white" rel="noopener noreferrer">Create New</a></li>
-                </div>
+                </div> -->
+                <button class="navlink create bg-dark text-white" onclick="generateTimetable()">
+                    <i class="fa fa-refresh me-3" aria-hidden="true"></i>Create New</button> 
                 <hr class="hr">
                 <div class="navlink edit"><i class="fa fa-right-from-bracket" aria-hidden="true"></i>
                     <li><a href="logout.php" class="white" rel="noopener noreferrer">Sign Out</a></li>
@@ -137,12 +142,34 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
         </div>
     </div>
     <div class="finaltimetable">
-        <button class="btn btn-default" onclick="generateTimetable()">
-            <i class="fa fa-refresh" aria-hidden="true"></i></button>
-        <a href="#" id="download" hidden><i class="fa fa-download" aria-hidden="true"></i></a>
+        <!-- <button class="btn btn-default" onclick="generateTimetable()">
+            <i class="fa fa-refresh" aria-hidden="true"></i></button> -->
+            <div class="d-flex flex-inline downloads">
+                <a href="#" id="download" hidden><i class="fa fa-download" aria-hidden="true"></i></a>
+                <form method="post" action="excell.php">
+                    <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
+                    <button type="submit" name="export">Xls</button>
+                </form>
+                <form method="post" action="getpdf.php">
+                    <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
+                    <button type="submit" name="export">PDF</button>
+                </form>
+            </div>     
         <div class="text-danger error-msg" id="error-msg"></div>
         <div class="table-responsive final_timetable">
             <div class="timetable">
+                <!-- <div class="form-group">
+			 		<select class  ="form-control" name="state" id="maxRows">
+						 <option value="5000">Show ALL Rows</option>
+						 <option value="5">5</option>
+						 <option value="10">10</option>
+						 <option value="15">15</option>
+						 <option value="20">20</option>
+						 <option value="50">50</option>
+						 <option value="70">70</option>
+						 <option value="100">100</option>
+						</select>
+			 	</div> -->
                 <table id="final_table" class="table table-bordered table-hover">
                     <thead class="thead-dark table-light">
                         <tr>
@@ -152,7 +179,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                             <th scope="col">Venue</th>
                             <th scope="col">Timeshift</th>
                             <th scope="col">Day</th>
-                            <th scope="col" class="col-5">Constraints</th>
+                            <!-- <th scope="col" class="col-5">Constraints</th> -->
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -160,7 +187,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
             </div>
         </div>
 
-    </div>
+
 
 </body>
 

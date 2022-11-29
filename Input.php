@@ -243,6 +243,43 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                                     <input type="text" placeholder="Describe venue eg. Comp Lab" id="venue_category" name="venue_category" class="form-control rounded-0" required />
                                     <input type="number" name="venue_capacity" id="venue_capacity" class="form-control rounded-0" required>
                                 </div>
+                                <!-- <div class="venue_description">
+                                            <div class="venue_building">
+                                                <h2>Room's Building</h2>
+                                                <div class="adb"><input type="radio" name="Venue_Building" id="ADB Building">
+                                                <label for="ADB Building">ADB Building</label></div>
+                                                <div class="pl"><input type="radio" name="Venue_Building" id="Pioneer Building">
+                                                <label for="Pioneer Building">Pioneer Building</label></div>
+                                                <div class="engcplx"><input type="radio" name="Venue_Building" id="Engineering Complex">
+                                                <label for="Engineering Complex">Engineering Complex</label></div>
+                                                <div class="engblck"><input type="radio" name="Venue_Building" id="Engineering Block">
+                                                <label for="Engineering Block">Engineering Block</label></div>
+                                                <div class="singlebd"><input type="radio" name="Venue_Building" id="Single Building">
+                                                <label for="Single Building">Single Building</label></div>
+                                            </div>
+                                            <div class="venue_floor">
+                                                <h2>Room's Floor</h2>
+                                                <div class="ground"><input type="radio" name="Venue_floor" id="ground">
+                                                <label for="Ground">Ground</label></div>
+                                                <div class="first"><input type="radio" name="Venue_floor" id="first">
+                                                <label for="First">First</label></div>
+                                                <div class="second"><input type="radio" name="Venue_floor" id="second">
+                                                <label for="Second">Second</label></div>
+                                                <div class="third"><input type="radio" name="Venue_floor" id="third">
+                                                <label for="Third">Third</label></div>
+                                            </div>
+                                            <div class="venue_use">
+                                                <h2>Room's Use</h2>
+                                                <div class="general"><input type="radio" name="Venue_use" id="general">
+                                                <label for="General">General</label></div>
+                                                <div class="comp_lab"><input type="radio" name="Venue_use" id="comp_lab">
+                                                <label for="comp_lab">Computer Lab</label></div>
+                                                <div class="biochem_lab"><input type="radio" name="Biochem Lab" id="biochem_lab">
+                                                <label for="biochem_lab">Biochem Lab</label></div>
+                                                <div class="fashion_design"><input type="radio" name="Venue_use" id="fashion_design">
+                                                <label for="fashion_design">Fashion & Design</label></div>
+                                            </div>
+                                </div> -->
                             </div>
                             <div class="form-group col-4">
                                 <input type="button" onclick="addSetting('venues')" class="btn btn-primary form-control" value="Add" name="add_venue" />
