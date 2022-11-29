@@ -1,11 +1,9 @@
 <?php
-class DBController {
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    private $database = "timetabler";
-    
-    private static $conn;
+        $servername = "localhost";
+        $username = "root";
+        $pass = "";
+        $db = "timetabler";
+        $conn;
     
     function __construct() {
         $this->conn = $this->connectDB();
@@ -37,5 +35,4 @@ class DBController {
         $rowcount = mysqli_num_rows($result);
         return $rowcount;
     }
-}
 ?>

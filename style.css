@@ -294,3 +294,15 @@ li {
  table tbody tr {
      display: none;
  }
+ .finaltimetable .downloads{
+    width: 10rem;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+ }
+ .downloads button img{
+    height: 2rem;
+    height: auto;
+ }

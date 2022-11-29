@@ -144,15 +144,15 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
     <div class="finaltimetable">
         <!-- <button class="btn btn-default" onclick="generateTimetable()">
             <i class="fa fa-refresh" aria-hidden="true"></i></button> -->
-            <div class="d-flex flex-inline downloads">
-                <a href="#" id="download" hidden><i class="fa fa-download" aria-hidden="true"></i></a>
-                <form method="post" action="excell.php">
+            <div class="downloads p-relative d-flex flex-direction-row ms-50"  style="margin-left:85%; margin-bottom: 0.5rem;">
+                <a href="#" id="download" class="border-0 me-1"><img src="Assets\Photos\csv logo.png" alt="CSV download"  style="height: 2rem;"></i></a>
+                <form method="post" action="excell.php" id="excell">
                     <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
-                    <button type="submit" name="export">Xls</button>
+                    <button type="submit" name="export" class="border-0 bg-white me-1"><img src="Assets\Photos\excell logo.png" alt="Excell download" style="height: 2rem;"></button>
                 </form>
-                <form method="post" action="getpdf.php">
+                <form method="post" action="getpdf.php" id="pdf">
                     <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
-                    <button type="submit" name="export">PDF</button>
+                    <button type="submit" name="export" class="border-0 bg-white"><img src="Assets\Photos\pdf logo.png" alt="pdf download" style="height: 2rem;"></button>
                 </form>
             </div>     
         <div class="text-danger error-msg" id="error-msg"></div>
