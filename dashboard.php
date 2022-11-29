@@ -83,7 +83,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                 <div class="navlink edit"><i class="fa fa-sliders" aria-hidden="true"></i>
                     <li><a href="input.php" class="white" rel="noopener noreferrer"> Edit Data </a></li>
                 </div>
-                <div class="navlink create"><i class="fa fa-calendar-days"></i>
+                <div class="navlink create" onclick="generateTimetable()"><i class="fa fa-calendar-days"></i>
                     <li><a href="#" class="white" rel="noopener noreferrer">Create New</a></li>
                 </div>
                 <hr class="hr">
@@ -141,14 +141,20 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
         <button class="btn btn-default" onclick="generateTimetable()">
             <i class="fa fa-refresh" aria-hidden="true"></i></button>
         <div class="dropdown" id="download" hidden>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Save&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Download&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><img src="Assets/db-30.png" class="col-1" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_to_database">Save in database</a></li>
-                <li><img src="Assets/pdf-30.png" class="col-1" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_as_pdf">Save as PDF</a></li>
-                <li><img src="Assets/csv-30.png" class="col-1" alt="csv-icon"> <a class="dropdown-item col-10" href="#" id="save_as_csv">Save as CSV</a></li>
-                <li><img src="Assets/json-30.png" class="col-1" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_as_json">Save as JSON</a></li>
+                <li class="d-flex m-1"><img src="Assets/db-30.png" class="col-2" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_to_database">Save in database</a></li>
+                <li class="d-flex m-1"><img src="Assets/photos/pdf logo.png" class="col-2" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_as_pdf">PDF</a></li>
+                <form method="post" action="excell.php">
+                    <img src="Assets/photos/excell logo.png" class="col-2" alt="csv-icon"><input type="submit" name="export" class="bg-white border-0 ms-3" value="Excell" />
+                </form>
+                <!-- <form action="excell.php" method="post">
+                <li class="d-flex m-1" name="export"><img src="Assets/photos/excell logo.png" class="col-2" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_as_excell">Excell</a></li>
+                </form> -->
+                <li class="d-flex m-1"><img src="Assets/photos/csv logo.png" class="col-2" alt="csv-icon"> <a class="dropdown-item col-10" href="#" id="save_as_csv">CSV</a></li>
+                <li class="d-flex m-1"><img src="Assets/json-30.png" class="col-2" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_as_json">JSON</a></li>
             </ul>
         </div>
 
