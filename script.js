@@ -49,18 +49,18 @@ function saveLecture() {
   var n_lectures = $("#lectures_table tbody tr").length + 1;
   $("#lectures_table > tbody:last-child").append(
     "<tr><td>" +
-      n_lectures +
-      "</td><td>" +
-      unit_code +
-      "</td><td>" +
-      lecturer +
-      "</td><td>" +
-      arrTimeshifts +
-      "," +
-      arrVenues +
-      "," +
-      arrDays +
-      "</td><</tr>"
+    n_lectures +
+    "</td><td>" +
+    unit_code +
+    "</td><td>" +
+    lecturer +
+    "</td><td>" +
+    arrTimeshifts +
+    "," +
+    arrVenues +
+    "," +
+    arrDays +
+    "</td><</tr>"
   );
 
   //
@@ -82,15 +82,15 @@ function saveLecture() {
   xmlhttp.open(
     "GET",
     "saveSettings.php?unit_code=" +
-      unit_code +
-      "&lecturer=" +
-      lecturer +
-      "&timeshifts=" +
-      arrTimeshifts +
-      "&venues=" +
-      arrVenues +
-      "&days=" +
-      arrDays,
+    unit_code +
+    "&lecturer=" +
+    lecturer +
+    "&timeshifts=" +
+    arrTimeshifts +
+    "&venues=" +
+    arrVenues +
+    "&days=" +
+    arrDays,
     true
   );
   xmlhttp.send();
@@ -111,33 +111,22 @@ function loadDefaults(x) {
       // code when server responds
       //console.log(response);
       var st = "";
-      var items = response.split("|");
-      items.pop();
-      items.forEach((element) => {
-        st +=
-          '<div class="form-group"><label class="checkbox-inline"><input type="checkbox" id="' +
-          element +
-          '">' +
-          element +
-          "</label></div>";
+      var items = response.split("|"); items.pop();
+      items.forEach(element => {
+        st += "<div class=\"form-group\"><label class=\"checkbox-inline\"><input type=\"checkbox\" id=\"" +
+          element + "\">" + element + "</label></div>";
         //console.log(element);
       });
-      if (x == "venue") {
-        $("#venue-constraint").html(st);
-        all_venues = JSON.parse(JSON.stringify(items));
-      } else if (x == "day") {
-        $("#day-constraint").html(st);
-        all_days = JSON.parse(JSON.stringify(items));
-      } else if (x == "timeshift") {
-        $("#timeshift-constraint").html(st);
-        all_timeshifts = JSON.parse(JSON.stringify(items));
-      } else if (x == "lec") {
-        if (response.startsWith("FAILED:")) {
-          //if error occured
+      if (x == "venue") { $("#venue-constraint").html(st); all_venues = JSON.parse(JSON.stringify(items)); }
+      else if (x == "day") { $("#day-constraint").html(st); all_days = JSON.parse(JSON.stringify(items)); }
+      else if (x == "timeshift") { $("#timeshift-constraint").html(st); all_timeshifts = JSON.parse(JSON.stringify(items)); }
+      else if (x == "lec") {
+        if (response.startsWith("FAILED:")) {//if error occured
           //$('#error-msg').html(response.slice(7));
           return;
         }
         $("#lectures_table > tbody:last-child").append(response);
+
       }
     }
   };
@@ -229,14 +218,14 @@ function addSetting(setting) {
           // Add the value to table
           $("#venues_table > tbody:last-child").append(
             "<tr><td>" +
-              n_sessions +
-              "</td><td>" +
-              venue_name +
-              "</td><td>" +
-              venue_category +
-              "</td><td>" +
-              venue_capacity +
-              "</td></tr>"
+            n_sessions +
+            "</td><td>" +
+            venue_name +
+            "</td><td>" +
+            venue_category +
+            "</td><td>" +
+            venue_capacity +
+            "</td></tr>"
           );
           $("#session_venue").val("");
         }
@@ -245,11 +234,11 @@ function addSetting(setting) {
     xmlhttp.open(
       "GET",
       "saveSettings.php?venue_name=" +
-        venue_name +
-        "&venue_category=" +
-        venue_category +
-        "&venue_capacity=" +
-        venue_capacity,
+      venue_name +
+      "&venue_category=" +
+      venue_category +
+      "&venue_capacity=" +
+      venue_capacity,
       true
     );
     xmlhttp.send();
@@ -299,42 +288,36 @@ function addSetting(setting) {
   }
 }
 function jsonToCsv(objArray) {
-  var array = typeof objArray != "object" ? JSON.parse(objArray) : objArray;
-  var str = "";
+  var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+  var str = '';
   //body
   for (var i = 0; i < array.length; i++) {
-    var line = "";
+    var line = '';
     for (var index in array[i]) {
-      if (line != "") line += ",";
+      if (line != '') line += ','
 
       line += array[i][index];
     }
 
-    str += line + "\r\n";
+    str += line + '\r\n';
   }
   console.log(str);
   return str;
 }
 function downloadCSVFromJson(filename, arrayOfJson) {
   // convert JSON to CSV
-  const replacer = (key, value) => (value === null ? "" : value); // specify how you want to handle null values here
-  const header = Object.keys(arrayOfJson[0]);
-  let csv = arrayOfJson.map((row) =>
-    header
-      .map((fieldName) => JSON.stringify(row[fieldName], replacer))
-      .join(",")
-  );
-  csv.unshift(header.join(","));
-  csv = csv.join("\r\n");
+  const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+  const header = Object.keys(arrayOfJson[0])
+  let csv = arrayOfJson.map(row => header.map(fieldName =>
+    JSON.stringify(row[fieldName], replacer)).join(','))
+  csv.unshift(header.join(','))
+  csv = csv.join('\r\n')
 
   // Create link and download
-  var link = document.createElement("a");
-  link.setAttribute(
-    "href",
-    "data:text/csv;charset=utf-8,%EF%BB%BF" + encodeURIComponent(csv)
-  );
-  link.setAttribute("download", filename);
-  link.style.visibility = "hidden";
+  var link = document.createElement('a');
+  link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv));
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -342,166 +325,6 @@ function downloadCSVFromJson(filename, arrayOfJson) {
 
 function generateTimetable() {
   $("#final_table tbody > tr").remove();
-  var lec_obj = {
-    id: 0,
-    unit_code: "",
-    lecturer: "",
-    timeshift: "",
-    venue: "",
-    day: "",
-    constraint: {
-      const_time: [],
-      const_venue: [],
-      const_day: [],
-    },
-  };
-  //
-  var xmlhttp;
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp = new XMLHttpRequest();
-  } else {
-    // code for IE6, IE5
-    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      var response = xmlhttp.responseText;
-      if (response.startsWith("FAILED:")) {
-        //if error occured
-        $("#error-msg").html(response);
-        console.log(response);
-        return;
-      }
-      response = response.slice(0, -1);
-      var rows = response.split("#");
-      var final_lectures = new Array();
-      for (let i = 0; i < rows.length; i++) {
-        var ss = rows[i].split("^");
-        var consts = ss[ss.length - 1].split("|");
-        let obj = JSON.parse(JSON.stringify(lec_obj));
-        obj.id = ss[0];
-        obj.unit_code = ss[1];
-        obj.lecturer = ss[2];
-        if (!(typeof consts[0] === "undefined" || consts[0] == "")) {
-          obj.constraint.const_time = consts[0].split(",");
-        }
-        if (!(typeof consts[1] === "undefined" || consts[1] == "")) {
-          obj.constraint.const_venue = consts[1].split(",");
-        }
-        if (!(typeof consts[2] === "undefined" || consts[2] == "")) {
-          obj.constraint.const_day = consts[2].split(",");
-        }
-        final_lectures.push(obj);
-      }
-
-      //loop through the JSON
-      final_lectures.forEach((element) => {
-        populateLectures(element);
-      });
-
-      console.log(
-        collisionCheck(final_lectures) ? "Collision detected and removed" : ""
-      );
-
-      final_lectures.forEach((element) => {
-        var row =
-          "<tr><td>" +
-          (final_lectures.indexOf(element) + 1) +
-          "</td><td>" +
-          element.unit_code +
-          "</td><td>" +
-          element.lecturer +
-          "</td><td>" +
-          element.venue +
-          "</td><td>" +
-          element.timeshift +
-          "</td><td>" +
-          element.day +
-          "</td>";
-        //     <td>" +
-        //     (element.constraint.const_time.length == 0
-        //       ? ""
-        //       : element.constraint.const_time + " ") +
-        //     (element.constraint.const_venue.length == 0
-        //       ? ""
-        //       : element.constraint.const_venue + " ") +
-        //     (element.constraint.const_day.length == 0
-        //       ? ""
-        //       : element.constraint.const_day);
-        $("#final_table > tbody:last-child").append(row);
-      });
-
-      //option for downloading JSON
-      document.getElementById("download").hidden = false;
-      var dataStr =
-        "data:text/json;charset=utf-8," +
-        encodeURIComponent(JSON.stringify(final_lectures));
-      var dlAnchorElem = document.getElementById("download");
-      dlAnchorElem.setAttribute("href", dataStr);
-      dlAnchorElem.setAttribute("download", "lectures-timetable.json");
-
-      //downloadCSVFromJson('myCustomName.csv', final_lectures);
-
-      console.log(final_lectures);
-    }
-  };
-  xmlhttp.open("GET", "loadDefaults.php?value=timetable", true);
-  xmlhttp.send();
-}
-function populateLectures(element) {
-  //for each object generate its position in the timetable
-  var _days = JSON.parse(JSON.stringify(all_days));
-  var _venues = JSON.parse(JSON.stringify(all_venues));
-  var _timeshifts = JSON.parse(JSON.stringify(all_timeshifts));
-  element.constraint.const_day.forEach((e) => {
-    _days.splice(_days.indexOf(e), 1);
-  });
-  element.constraint.const_venue.forEach((e) => {
-    _venues.splice(_venues.indexOf(e), 1);
-  });
-  element.constraint.const_time.forEach((e) => {
-    _timeshifts.splice(_timeshifts.indexOf(e), 1);
-  });
-
-  element.day = _days[Math.floor(Math.random() * _days.length)];
-  element.venue = _venues[Math.floor(Math.random() * _venues.length)];
-  element.timeshift =
-    _timeshifts[Math.floor(Math.random() * _timeshifts.length)];
-  //console.log(element.day + "-" + element.venue + "-" + element.timeshift);
-  //console.log();
-  //collisionCheck(lectures);
-  //return lectures;
-}
-function collisionCheck(lectures) {
-  var collision_detected = false;
-  for (let i = 0; i < lectures.length; i++) {
-    const element = lectures[i];
-    for (let j = i + 1; j < lectures.length; j++) {
-      if (
-        element.day == lectures[j].day &&
-        element.venue == lectures[j].venue &&
-        element.timeshift == lectures[j].timeshift
-      ) {
-        collision_detected = true;
-        console.log(
-          "Collision detected:" +
-            element.unit_code +
-            " & " +
-            lectures[j].unit_code
-        );
-        console.log("Removing collision");
-        populateLectures(element);
-      } else {
-        //console.log(element.unit_code + ": pass collision");
-      }
-    }
-  }
-  return collision_detected;
-}
-
-/*
-function generateTimetable() {
   var lec_obj = {
     id: 0, unit_code: "", lecturer: "", timeshift: "", venue: "", day: "",
     constraint: {
@@ -520,24 +343,17 @@ function generateTimetable() {
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       var response = xmlhttp.responseText;
-      //console.log(response);
+      if (response.startsWith("FAILED:")) {//if error occured
+        $('#error-msg').html(response);
+        console.log(response);
+        return;
+      }
       response = response.slice(0, -1);
       var rows = response.split("#");
-      //console.log("row CCM:" + rows[9]);
       var final_lectures = new Array();
       for (let i = 0; i < rows.length; i++) {
-        var row = "<tr><td>";
         var ss = rows[i].split("^");
         var consts = ss[ss.length - 1].split("|");
-        ss[ss.length - 1] = ss[ss.length - 1].replaceAll("||", "|");
-        if (ss[ss.length - 1].slice(0, 1) === "|") {//remove / at the start
-          ss[ss.length - 1] = ss[ss.length - 1].slice(1);
-        }
-        if (ss[ss.length - 1].slice(-1) === "|") {//remove / at the end
-          ss[ss.length - 1] = ss[ss.length - 1].slice(0, -1);
-        }
-        ss[ss.length - 1] = ss[ss.length - 1].replaceAll("|", ",");
-
         let obj = JSON.parse(JSON.stringify(lec_obj));
         obj.id = ss[0]; obj.unit_code = ss[1]; obj.lecturer = ss[2];
         if (!(typeof consts[0] === 'undefined' || consts[0] == '')) {
@@ -549,47 +365,112 @@ function generateTimetable() {
         if (!(typeof consts[2] === 'undefined' || consts[2] == '')) {
           obj.constraint.const_day = consts[2].split(",");
         }
-        //console.log(consts[2]);
         final_lectures.push(obj);
-        //console.log(ss[1] + "::" + (obj.constraint.const_time.length));
-        for (let j = 0; j < ss.length; j++) {
-          if (j == ss.length - 1) {//last item in array
-            row += ss[j] + "</td></tr>";
-          } else {
-            row += ss[j] + "</td><td>";
-          }
-        }
-        $("#final_table > tbody:last-child").append(row);
       }
-
 
       //loop through the JSON
       final_lectures.forEach(element => {
-        //for each object generate its position in the timetable
-        let _days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-        var _venues = JSON.parse(JSON.stringify(all_venues));
-        var _timeshifts = JSON.parse(JSON.stringify(all_timeshifts));
-        element.constraint.const_day.forEach(e => {
-          _days.splice(_days.indexOf(e), 1);
-        });
-        element.constraint.const_venue.forEach(e => {
-          _venues.splice(_venues.indexOf(e), 1);
-        });
-        element.constraint.const_time.forEach(e => {
-          _timeshifts.splice(_timeshifts.indexOf(e), 1);
-        });
-
-        element.day = _days[Math.floor(Math.random() * _days.length)];
-        element.venue = _venues[Math.floor(Math.random() * _venues.length)];
-        element.timeshift = _timeshifts[Math.floor(Math.random() * _timeshifts.length)];
+        populateLectures(element);
       });
 
-      console.log(final_lectures);
+      final_lectures.forEach(element => {
+        var row = "<tr><td>" + (final_lectures.indexOf(element) + 1) + "</td><td>" + element.unit_code + "</td><td>" +
+          element.lecturer + "</td><td>" + element.venue + "</td><td>" + element.timeshift + "</td><td>" + element.day +
+          "</td></tr>";
+        $("#final_table > tbody:last-child").append(row);
+      });
 
+      while (collisionCheck(final_lectures));//loop until all collisions are removed
+      //display the table again
+      $("#final_table tbody tr").remove();
+      final_lectures.forEach(element => {
+        var row = "<tr><td>" + (final_lectures.indexOf(element) + 1) + "</td><td>" + element.unit_code + "</td><td>" +
+          element.lecturer + "</td><td>" + element.venue + "</td><td>" + element.timeshift + "</td><td>" + element.day +
+          "</td></tr>";
+        $("#final_table > tbody:last-child").append(row);
+      });
+      /*
+      $("#final_table tbody tr").remove();
+      final_lectures.forEach(element => {
+        var row = "<tr><td>" + (final_lectures.indexOf(element) + 1) + "</td><td>" + element.unit_code + "</td><td>" +
+          element.lecturer + "</td><td>" + element.venue + "</td><td>" + element.timeshift + "</td><td>" + element.day +
+          "</td><td>" + (element.constraint.const_time.length == 0 ? '' : element.constraint.const_time + " ") +
+          (element.constraint.const_venue.length == 0 ? '' : element.constraint.const_venue + " ") +
+          (element.constraint.const_day.length == 0 ? '' : element.constraint.const_day);
+        $("#final_table > tbody:last-child").append(row);
+      });
+      */
+
+      //option for downloading JSON
+      document.getElementById('download').hidden = false;
+
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(final_lectures));
+      var dlAnchorElem = document.getElementById('save_as_json');
+      dlAnchorElem.setAttribute("href", dataStr);
+      dlAnchorElem.setAttribute("download", "lectures-timetable.json");
+
+      $('#save_to_database').click(function name() {
+        //console.log("saving to database");
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+        } else {
+          // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var response = xmlhttp.responseText;
+            console.log(response);
+          }
+        };
+        xmlhttp.open("GET", "saveSettings.php?save_to_database=" + JSON.stringify(final_lectures), true);
+        xmlhttp.send();
+      });
+
+      //downloadCSVFromJson('myCustomName.csv', final_lectures);
+
+      console.log(final_lectures);
     }
   };
   xmlhttp.open("GET", "loadDefaults.php?value=timetable", true);
   xmlhttp.send();
 
 }
-*/
+function populateLectures(element) {
+  //for each object generate its position in the timetable
+  var _days = JSON.parse(JSON.stringify(all_days));
+  var _venues = JSON.parse(JSON.stringify(all_venues));
+  var _timeshifts = JSON.parse(JSON.stringify(all_timeshifts));
+  element.constraint.const_day.forEach(e => {
+    _days.splice(_days.indexOf(e), 1);
+  });
+  element.constraint.const_venue.forEach(e => {
+    _venues.splice(_venues.indexOf(e), 1);
+  });
+  element.constraint.const_time.forEach(e => {
+    _timeshifts.splice(_timeshifts.indexOf(e), 1);
+  });
+
+  element.day = _days[Math.floor(Math.random() * _days.length)];
+  element.venue = _venues[Math.floor(Math.random() * _venues.length)];
+  element.timeshift = _timeshifts[Math.floor(Math.random() * _timeshifts.length)];
+}
+function collisionCheck(lectures) {
+  var collision_detected = false;
+  for (let i = 0; i < lectures.length; i++) {
+    const element = lectures[i];
+    for (let j = i + 1; j < lectures.length; j++) {
+      if (element.day == lectures[j].day && element.venue == lectures[j].venue && element.timeshift == lectures[j].timeshift) {
+        collision_detected = true;
+        console.log("Removing collision between:" + element.unit_code + " & " + lectures[j].unit_code);
+        populateLectures(element);
+      }
+    }
+  }
+  if (!collision_detected) {
+    console.log("Collisions removed");
+  }
+  return collision_detected;
+}

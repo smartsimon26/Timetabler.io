@@ -6,7 +6,6 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,8 +36,6 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
             loadDefaults("day");
             loadDefaults("venue");
             loadDefaults("timeshift");
-            // $('#dtBasicExample').DataTable(); 
-            // $('.dataTables_length').addClass('bs-select');
         });
     </script>
 </head>
@@ -85,11 +82,9 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                 <div class="navlink edit"><i class="fa fa-sliders" aria-hidden="true"></i>
                     <li><a href="input.php" class="white" rel="noopener noreferrer"> Edit Data </a></li>
                 </div>
-                <!-- <div class="navlink create"><i class="fa fa-calendar-days" onclick="generateTimetable()"></i>
+                <div class="navlink create"><i class="fa fa-calendar-days"></i>
                     <li><a href="#" class="white" rel="noopener noreferrer">Create New</a></li>
-                </div> -->
-                <button class="navlink create bg-dark text-white" onclick="generateTimetable()">
-                    <i class="fa fa-refresh me-3" aria-hidden="true"></i>Create New</button> 
+                </div>
                 <hr class="hr">
                 <div class="navlink edit"><i class="fa fa-right-from-bracket" aria-hidden="true"></i>
                     <li><a href="logout.php" class="white" rel="noopener noreferrer">Sign Out</a></li>
@@ -117,59 +112,48 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                 <div class="ccard shadow-lg">
                     <i class="fas fa-layer-group"></i>
                     <div class="card-content">
-                        <h1>VENUES REGISTERED</h1>
+                        <h1>UNITS REGISTERED</h1>
                         <h2>649</h2>
-                       <p>Venues registered for lectures</p>  
+                        <p>Total units done this semester</p>
                     </div>
                 </div>
                 <div class="ccard shadow-lg">
                     <i class="fas fa-layer-group"></i>
                     <div class="card-content">
-                        <h1>LIVE LECTURES</h1>
+                        <h1>UNITS REGISTERED</h1>
                         <h2>649</h2>
-                        <p>Lectures happening now</p> <!-- it would have to know which day is today, this one is not necessary -->
+                        <p>Total units done this semester</p>
                     </div>
                 </div>
                 <div class="ccard shadow-lg">
                     <i class="fas fa-layer-group"></i>
                     <div class="card-content">
-                        <h1>FREE VENUES</h1>
+                        <h1>UNITS REGISTERED</h1>
                         <h2>649</h2>
-                        <p>Venues not allocated</p> <!-- it would have to know which day is today, this one is not necessary -->
+                        <p>Total units done this semester</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="finaltimetable">
-        <!-- <button class="btn btn-default" onclick="generateTimetable()">
-            <i class="fa fa-refresh" aria-hidden="true"></i></button> -->
-            <div class="downloads p-relative d-flex flex-direction-row ms-50"  style="margin-left:85%; margin-bottom: 0.5rem;">
-                <a href="#" id="download" class="border-0 me-1"><img src="Assets\Photos\csv logo.png" alt="CSV download"  style="height: 2rem;"></i></a>
-                <form method="post" action="excell.php" id="excell">
-                    <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
-                    <button type="submit" name="export" class="border-0 bg-white me-1"><img src="Assets\Photos\excell logo.png" alt="Excell download" style="height: 2rem;"></button>
-                </form>
-                <form method="post" action="Final Timetable.php" id="pdf">
-                    <!-- <input type="submit" name="export" class="btn btn-success" value="Export" /> -->
-                    <button type="submit" name="export" class="border-0 bg-white" target="_blank"><img src="Assets\Photos\pdf logo.png" alt="pdf download" style="height: 2rem;"></button>
-                </form>
-            </div>     
+        <button class="btn btn-default" onclick="generateTimetable()">
+            <i class="fa fa-refresh" aria-hidden="true"></i></button>
+        <div class="dropdown" id="download" hidden>
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Save&nbsp;<i class="fa fa-download" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><img src="Assets/db-30.png" class="col-1" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_to_database">Save in database</a></li>
+                <li><img src="Assets/pdf-30.png" class="col-1" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_as_pdf">Save as PDF</a></li>
+                <li><img src="Assets/csv-30.png" class="col-1" alt="csv-icon"> <a class="dropdown-item col-10" href="#" id="save_as_csv">Save as CSV</a></li>
+                <li><img src="Assets/json-30.png" class="col-1" alt="csv-icon"><a class="dropdown-item col-10" href="#" id="save_as_json">Save as JSON</a></li>
+            </ul>
+        </div>
+
         <div class="text-danger error-msg" id="error-msg"></div>
         <div class="table-responsive final_timetable">
             <div class="timetable">
-                <!-- <div class="form-group">
-			 		<select class  ="form-control" name="state" id="maxRows">
-						 <option value="5000">Show ALL Rows</option>
-						 <option value="5">5</option>
-						 <option value="10">10</option>
-						 <option value="15">15</option>
-						 <option value="20">20</option>
-						 <option value="50">50</option>
-						 <option value="70">70</option>
-						 <option value="100">100</option>
-						</select>
-			 	</div> -->
                 <table id="final_table" class="table table-bordered table-hover">
                     <thead class="thead-dark table-light">
                         <tr>
@@ -179,7 +163,6 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                             <th scope="col">Venue</th>
                             <th scope="col">Timeshift</th>
                             <th scope="col">Day</th>
-                            <!-- <th scope="col" class="col-5">Constraints</th> -->
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -187,7 +170,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
             </div>
         </div>
 
-
+    </div>
 
 </body>
 

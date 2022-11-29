@@ -101,4 +101,24 @@ if (isset($_GET["timeshift"])) {
     } catch (PDOException $e) {
         echo "FAILED:" . $e->getMessage();
     }
+} elseif (isset($_GET["save_to_database"])) {
+    $final_lectures = json_decode($_GET["save_to_database"]);
+    echo "saving to database";
+    try {
+        for ($i = 0; $i < count($final_lectures); $i++) {
+            $lecture = $final_lectures[$i];
+            $sql = "UPDATE lectures SET Allocated_Day = :day, 
+        Allocated_Timeshift = :timeshift, Allocated_Venue = :venue WHERE id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(":id", $lecture->id);
+            $stmt->bindParam(":day", $lecture->day);
+            $stmt->bindParam(":timeshift", $lecture->timeshift);
+            $stmt->bindParam(":venue", $lecture->venue);
+            $stmt->execute();
+        }
+        echo "SUCCESS";
+        $conn = null;
+    } catch (PDOException $e) {
+        echo "FAILED:" . $e->getMessage();
+    }
 }
