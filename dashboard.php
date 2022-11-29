@@ -117,25 +117,25 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                 <div class="ccard shadow-lg">
                     <i class="fas fa-layer-group"></i>
                     <div class="card-content">
-                        <h1>UNITS REGISTERED</h1>
+                        <h1>VENUES REGISTERED</h1>
                         <h2>649</h2>
-                        <p>Total units done this semester</p>
+                       <p>Venues registered for lectures</p>  
                     </div>
                 </div>
                 <div class="ccard shadow-lg">
                     <i class="fas fa-layer-group"></i>
                     <div class="card-content">
-                        <h1>UNITS REGISTERED</h1>
+                        <h1>LIVE LECTURES</h1>
                         <h2>649</h2>
-                        <p>Total units done this semester</p>
+                        <p>Lectures happening now</p> <!-- it would have to know which day is today, this one is not necessary -->
                     </div>
                 </div>
                 <div class="ccard shadow-lg">
                     <i class="fas fa-layer-group"></i>
                     <div class="card-content">
-                        <h1>UNITS REGISTERED</h1>
+                        <h1>FREE VENUES</h1>
                         <h2>649</h2>
-                        <p>Total units done this semester</p>
+                        <p>Venues not allocated</p> <!-- it would have to know which day is today, this one is not necessary -->
                     </div>
                 </div>
             </div>
