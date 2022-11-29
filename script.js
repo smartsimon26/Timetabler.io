@@ -389,17 +389,7 @@ function generateTimetable() {
           "</td></tr>";
         $("#final_table > tbody:last-child").append(row);
       });
-      /*
-      $("#final_table tbody tr").remove();
-      final_lectures.forEach(element => {
-        var row = "<tr><td>" + (final_lectures.indexOf(element) + 1) + "</td><td>" + element.unit_code + "</td><td>" +
-          element.lecturer + "</td><td>" + element.venue + "</td><td>" + element.timeshift + "</td><td>" + element.day +
-          "</td><td>" + (element.constraint.const_time.length == 0 ? '' : element.constraint.const_time + " ") +
-          (element.constraint.const_venue.length == 0 ? '' : element.constraint.const_venue + " ") +
-          (element.constraint.const_day.length == 0 ? '' : element.constraint.const_day);
-        $("#final_table > tbody:last-child").append(row);
-      });
-      */
+
 
       //option for downloading JSON
       document.getElementById('download').hidden = false;
@@ -408,6 +398,54 @@ function generateTimetable() {
       var dlAnchorElem = document.getElementById('save_as_json');
       dlAnchorElem.setAttribute("href", dataStr);
       dlAnchorElem.setAttribute("download", "lectures-timetable.json");
+
+      $('#save_as_pdf').click(function name() {
+        var HTML_Width = $("#final_lectures").width();
+        var HTML_Height = $("#final_lectures").height();
+        var top_left_margin = 15;
+        var PDF_Width = HTML_Width + (top_left_margin * 2);
+        var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+        var canvas_image_width = HTML_Width;
+        var canvas_image_height = HTML_Height;
+
+        var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+        html2canvas($("#final_lectures")[0]).then(function (canvas) {
+          var imgData = canvas.toDataURL("image/jpeg", 1.0);
+          var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+          pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+          for (var i = 1; i <= totalPDFPages; i++) {
+            pdf.addPage(PDF_Width, PDF_Height);
+            pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+          }
+          pdf.save("Timetable " + new Date().getHours() + "-" + new Date().getMinutes() + "-" + new Date().getSeconds() + ".pdf");
+        });
+      });
+      $('#save_as_csv').click(function name() {
+        var csv_data = [];
+        var rows = document.getElementsByTagName('tr');
+        for (var i = 0; i < rows.length; i++) {
+          var cols = rows[i].querySelectorAll('td,th');
+          var csvrow = [];
+          for (var j = 0; j < cols.length; j++) {
+            csvrow.push(cols[j].innerHTML);
+          }
+          csv_data.push(csvrow.join(","));
+        }
+        csv_data = csv_data.join('\n');
+        downloadCSVFile(csv_data);
+        function downloadCSVFile(csv_data) {
+          CSVFile = new Blob([csv_data], { type: "text/csv" });
+          var temp_link = document.createElement('a');
+          temp_link.download = "Timetable " + new Date().getHours() + "-" + new Date().getMinutes() + "-" + new Date().getSeconds() + ".csv";
+          var url = window.URL.createObjectURL(CSVFile);
+          temp_link.href = url;
+          temp_link.style.display = "none";
+          document.body.appendChild(temp_link);
+          temp_link.click();
+          document.body.removeChild(temp_link);
+        }
+      });
 
       $('#save_to_database').click(function name() {
         //console.log("saving to database");

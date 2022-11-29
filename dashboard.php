@@ -29,7 +29,8 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
     <!-- <script src="../../cdn/jQuery.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script src="../../cdn/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script type="text/javascript" src="script.js"></script>
     <script>
         $(document).ready(function() {
@@ -153,7 +154,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
 
         <div class="text-danger error-msg" id="error-msg"></div>
         <div class="table-responsive final_timetable">
-            <div class="timetable">
+            <div class="timetable" id="final_lectures">
                 <table id="final_table" class="table table-bordered table-hover">
                     <thead class="thead-dark table-light">
                         <tr>
