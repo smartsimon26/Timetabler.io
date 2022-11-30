@@ -1,17 +1,22 @@
 <html>
 
 <head>
-	<title>User Registration</title>
+	<title>Sign Up | Timetabler</title>
 	<link href="assets/css/phppot-style.css" type="text/css" rel="stylesheet" />
 	<link href="assets/css/user-registration.css" type="text/css" rel="stylesheet" />
 	<script src="vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
+	<link
+      rel="shortcut icon"
+      href="Assets/Photos/favicon.png"
+      type="image/x-icon"
+    />
 </head>
 
-<body>
+<body style="background-color:#000;">
 	<div class="phppot-container">
-		<div class="sign-up-container">
-			<div class="login-signup">
-				<a href="index.php">Login</a>
+		<div class="sign-up-container" style="height:75%;">
+			<div class="login-signup" style="position:absolute;bottom:7.5rem;left:43%; display:flex;flex-direction:column;text-align:center;">
+				<p>Already have an account?</p><a href="index.php" style="color:#000">Login</a>
 			</div>
 			<div class="">
 				<form name="sign-up" role="form" id="form">

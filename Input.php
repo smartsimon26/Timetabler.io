@@ -42,35 +42,46 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
             });
         });
     </script>
+    <style>
+        .lectures{
+    display: flex;
+    position: relative;
+    top: 1rem;
+ }
+ .form{
+    display: flex;
+    position: relative;
+    margin-bottom: 1rem;
+ }
+ .lectures label{
+    font-weight:bold;
+ }
+ .lectures input{
+    margin-right:.5rem;
+ }
+ .check{
+    background-color:#000;
+ }
+    </style>
 </head>
 
 <body>
     <nav class="navtop">
-        <div class="menuactions">
-
-            <!-- <div class="input-group col-2 d-flex flex-nowrap">
-                <div class="shadow ms-3">
-                    <input id="search-input" type="search" id="form1" class="form-control bg-light border border-0" placeholder="Search" />
-                </div>
-                <button id="search-button" type="button" class="btn btn-light shadow">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div> -->
-        </div>
+        <div class="menuactions"></div>
         <div class="menubuttons">
             <div class="theme shadow"><i class="fa fa-adjust"></i></div>
             <div class="settings shadow"><i class="fa fa-gear"></i></div>
             <div class="notifications shadow"><i class="fa fa-bell"></i></div>
-<div class="dropdown-center">
-   <div class="profile shadow dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-  <button class="" style="background-color:#f0f8ff00;border: none;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="Assets/Photos/Smart_Simon-removebg-preview (1).png" alt="">
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="logout.php">Sign Out</a></li>
-    <li><a class="dropdown-item" href="logout.php">Log Off</a></li>
-  </ul>
-</div>
-</div>        </div>
+        <div class="dropdown-center">
+        <div class="profile shadow dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="" style="background-color:#f0f8ff00;border: none;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="Assets/Photos/Smart_Simon-removebg-preview (1).png" alt="">
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="logout.php">Sign Out</a></li>
+                <li><a class="dropdown-item" href="logout.php">Log Off</a></li>
+            </ul>
+            </div>
+    </div>
     </nav>
     <aside>
         <div class="sidemenu">
@@ -153,39 +164,21 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
     <button class="nav-link bg-dark text-white" id="venues" data-bs-toggle="tab" data-bs-target="#content-venues" type="button" role="tab" aria-controls="venues" aria-selected="false">Venues</button>
     <button class="nav-link bg-dark text-white" id="days" data-bs-toggle="tab" data-bs-target="#content-days" type="button" role="tab" aria-controls="days" aria-selected="false">Days</button>
   </div>
-            <!-- <ul class="nav nav-tabs nav-justified mb-3" id="ex1" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="lecture" data-bs-target="#lectures" data-mdb-toggle="tab" href="#lectures" role="tab" aria-controls="lectures" aria-selected="true">Edit Lectures</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="ex3-tab-1" data-bs-target="#ex3-tabs-1" data-mdb-toggle="tab" href="#ex3-tabs-1" role="tab" aria-controls="ex3-tabs-1" aria-selected="false">Edit
-                        Timeshifts</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="ex3-tab-2" data-bs-target="#ex3-tabs-2" data-mdb-toggle="tab" href="#ex3-tabs-2" role="tab" aria-controls="ex3-tabs-2" aria-selected="false">Edit
-                        Venues</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="ex3-tab-3" data-bs-target="#ex3-tabs-3" data-mdb-toggle="tab" href="#ex3-tabs-3" role="tab" aria-controls="ex3-tabs-3" aria-selected="false">Edit Days</a>
-                </li>
-            </ul> -->
-            <!-- Tabs navs -->
-
-            <!-- Tabs content -->
+            
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="content-lectures" role="tabpanel" aria-labelledby="lecture" tabindex="0">
+        <div class="tab-pane fade show active lectures" id="content-lectures" role="tabpanel" aria-labelledby="lecture" tabindex="0">
                         <form role="form" name="lectures" id="lectures_form" class="form row">
-                            <div class="lecture col-3">
+                            <div class="lecture col-3 me-5">
                                 <div class="form-group">
                                     <label for="unit-code">Unit Code</label>
-                                    <input type="text" name="unit-code" id="unit-code" class="form-control" required>
+                                    <input type="text" name="unit-code" id="unit-code" class="form-control" placeholder="SIT 302" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="lecturer">Lecturer</label>
-                                    <input type="text" name="lecturer" id="lecturer" class="form-control" required>
+                                    <input type="text" name="lecturer" id="lecturer" class="form-control" placeholder="Dr. Muchiri" required>
                                 </div>
                             </div>
-                            <div class="timeconstraint col-3">
+                            <div class="timeconstraint col-2 ms-5 me-5">
                                 <label for="timeshift-constraint">Avoid Timeshift</label>
                                 <div class="d-flex flex-column flex-nowrap form-group" id="timeshift-constraint">
                                 </div>
@@ -195,14 +188,14 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                                 <div class="d-flex flex-column flex-nowrap form-group" id="venue-constraint">
                                 </div>
                             </div>
-                            <div class="dayconstraint col-3">
+                            <div class="dayconstraint col-2">
                                 <label for="day-constraint">Avoid Day</label>
                                 <div id="day-constraint" class="form-group">
                                 </div>
                             </div>
-                            <div class="form-group container col-4">
-                                <button class="clear form-control" type="reset">Clear</button>
-                                <input type="submit" onclick="saveLecture()" class="save form-control" value="Save" />
+                            <div class="form-group container col-3 d-flex mt-3 d-flex">
+                                <button class="clear form-control me-2" type="reset">Clear</button>
+                                <input type="submit" onclick="saveLecture()" class="save form-control bg-dark text-white ms-2" value="Save" />
                             </div>
                         </form>
                         <div>
@@ -222,15 +215,17 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                                 </div>
                             </div>
         </div>
-        <div class="tab-pane fade" id="content-timeshifts" role="tabpanel" aria-labelledby="timeshifts" tabindex="0">
+        <div class="tab-pane fade align-items-center d-flex flex-column mt-2 mb-2" id="content-timeshifts" role="tabpanel" aria-labelledby="timeshifts" tabindex="0">
             <h2>Enter the timeshifts</h2>
-                            <form role="form" class="form row" id="timeshift_form">
-                                <div class="form-group col-8">
-                                    <div class="input-group"><input type="text" placeholder="Enter the session e.g 08:00-10:00" id="session_time" name="session_time" class="form-control rounded-0" required />
+                            <form role="form" class="form align-items-center d-flex flex-column mt-1" id="timeshift_form">
+                                <div class="form-group col-12">
+                                    <div class="input-group col-8">
+                                        <input type="text" placeholder="E.g. Dawn" id="session_time" name="session_time" class="form-control rounded-0" required />
                                     </div>
                                 </div>
-                                <div class="form-group col-4">
-                                    <input type="button" onclick="addSetting('timeshifts')" class="btn btn-primary form-control" value="Add" name="add_timeshift" />
+                                <div class="form-group col-6 d-flex flex-column mt-5">
+                                    <button class="form-control col-4" type="reset">Clear</button>
+                                    <input type="button" onclick="addSetting('timeshifts')" class="btn bg-dark text-white col-8 form-control" value="Add" name="add_timeshift" />
                                 </div>
                             </form>
                             <table class="table" id="timeshift_table" hidden>
@@ -243,42 +238,48 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                                 <tbody></tbody>
                             </table>
         </div>
-        <div class="tab-pane fade" id="content-venues" role="tabpanel" aria-labelledby="venues" tabindex="0">
-            <h2 class="mb-3">Enter the venues</h2>
-                            <form role="form" class="form d-flex flex-column justify-content-center align-items-center" id="venues_form">
-                                <div class="form-group col-8 d-flex">
-                                    <div class="input-group">
-                                        <input type="text" placeholder="Enter the venue e.g ADB2" id="venue_name" name="venue_name" class="form-control rounded-0" required />
-                                        <input type="text" placeholder="Describe venue eg. Comp Lab" id="venue_category" name="venue_category" class="form-control rounded-0" required />
-                                        <input type="number" name="venue_capacity" id="venue_capacity" class="form-control rounded-0" required>
-                                    </div>
-                                </div>
-                                <div class="form-group col-4">
-                                    <input type="button" onclick="addSetting('venues')" class="btn btn-primary form-control" value="Add" name="add_venue" />
-                                </div>
-                            </form>
-                            <table class="table" id="venues_table" hidden>
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Room</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Capacity</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+        <div class="tab-pane fade d-flex flex-column align-items-center" id="content-venues" role="tabpanel" aria-labelledby="venues" tabindex="0">
+            <h2>Enter the venues</h2>
+                <form role="form" class="form d-flex flex-column" id="venues_form">
+                    <div class="form-group col-8">
+                        <div class="input-group d-flex flex-row">
+                            <div class="venueinput">
+                                <label for="venue_name">Venue Name</label>
+                                <input type="text" placeholder="E.g. ADB 202" id="venue_name" name="venue_name" class="form-control rounded-0" required />
+                                <input type="number" name="venue_capacity" id="venue_capacity" class="form-control rounded-0" required>
+                            </div>
+                            <div class="venuecategory">
+                                <label for="venue-constraint">Venue Category</label>
+                                <div class="d-flex flex-column flex-nowrap form-group" id="venue-constraint"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-4">
+                        <input type="button" onclick="addSetting('venues')" class="btn btn-primary form-control" value="Add" name="add_venue" />
+                    </div>
+                </form>
+                <table class="table" id="venues_table" hidden>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Room</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
         </div>
-        <div class="tab-pane fade" id="content-days" role="tabpanel" aria-labelledby="days" tabindex="0">
+        <div class="tab-pane fade position-absolute top-0 mb-5 left-5" id="content-days" role="tabpanel" aria-labelledby="days" tabindex="0">
             <h2>Enter the days</h2>
                             <form role="form" class="form row" id="days_form">
                                 <div class="form-group col-8">
                                     <div class="input-group">
-                                        <input type="text" placeholder="Enter the day e.g Monday" id="session_day" name="session_day" class="form-control rounded-0" required />
+                                        <input type="text" placeholder="E.g Monday" id="session_day" name="session_day" class="form-control rounded-0" required />
                                     </div>
                                 </div>
                                 <div class="form-group col-4">
-                                    <input type="button" onclick="addSetting('days')" class="btn btn-primary form-control" value="Add" name="add_day" />
+                                    <input type="button" onclick="addSetting('days')" class="btn btn-dark form-control" value="Add" name="add_day" />
                                 </div>
                             </form>
                             <table class="table" id="days_table" hidden>

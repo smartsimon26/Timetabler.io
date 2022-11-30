@@ -298,3 +298,8 @@ li {
  .searches .card .card-body{
     height: 12rem;
  }
+ .lectures{
+    display: flex;
+    position: relative;
+    top: 5rem;
+ }

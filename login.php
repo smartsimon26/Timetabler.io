@@ -12,19 +12,24 @@ session_start();
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+	<title>Login | Timetabler</title>
 	<link href="assets/css/phppot-style.css" type="text/css" rel="stylesheet" />
 	<link href="assets/css/user-registration.css" type="text/css" rel="stylesheet" />
 	<script src="vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
+	<link
+      rel="shortcut icon"
+      href="Assets/Photos/favicon.png"
+      type="image/x-icon"
+    />
 </head>
 
-<body>
+<body style="background-color:#000;">
 	<div class="phppot-container">
-		<div class="sign-up-container">
-			<div class="login-signup">
-				<a href="user-registration.php">Sign up</a>
+		<div class="sign-up-container" style="height:75%;">
+			<div class="login-signup" style="position:absolute;bottom:10rem;left:43%; display:flex;flex-direction:column;text-align:center;">
+			<p>If you are a new user . . .</p><a href="user-registration.php" style="color:#000">Sign up</a>
 			</div>
-			<div class="signup-align">
+			<div class="signup-align" style="margin-top: 2.5rem;">
 				<form name="login" id="form">
 					<div class="signup-heading">Login</div>
 					<div class="error-msg" id="error-msg">
