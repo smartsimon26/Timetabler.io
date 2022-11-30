@@ -169,6 +169,7 @@ li {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items:center;
 }
 
 .quickstats {
@@ -226,7 +227,6 @@ li {
 
 .finaltimetable {
     position: relative;
-    left: 17.5%;
     padding-left: 1rem;
     width: 81%;
     top: 5rem;
