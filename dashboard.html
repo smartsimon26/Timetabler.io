@@ -1,11 +1,11 @@
-<?php
+<!--< ?php
 session_start();
 if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
 } else {
     echo "<script>location.href='login.php';</script>";
 }
 
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,9 +135,12 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                     </div>
                 </div>
             </div>
+            <div class="graph col-6 bg-dark" style="height:2rem;width: 10rem;">
+
+            </div>
         </div>
     </div>
-    <div class="finaltimetable">
+    <div class="finaltimetable d-none">
         <button class="btn btn-default" onclick="generateTimetable()">
             <i class="fa fa-refresh" aria-hidden="true"></i></button>
         <div class="dropdown" id="download" hidden>
@@ -178,7 +181,6 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
         </div>
 
     </div>
-
 </body>
 
 </html>

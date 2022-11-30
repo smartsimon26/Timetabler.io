@@ -74,7 +74,7 @@ li {
     position: fixed;
     width: 17.5%;
     height: 100%;
-    background-color: #000;
+    background-color: rgb(70, 3, 3);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -167,7 +167,8 @@ li {
     height: auto;
     position: relative;
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -270,11 +271,11 @@ li {
 #download {
     float: right;
 }
-
-/*.tt table {
-    border: 0;
-    border-collapse: separate;
-    border-spacing: 0 5px;
-}
-
- Just common table stuff. Really. */
+ .graph{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+    width: 50%;
+ }
