@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
+} else {
+    echo "<script>location.href='login.php';</script>";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -135,13 +143,13 @@
             </div>
             <div class="navlinks">
                 <div class="navlink home"><i class="fa fa-home" aria-hidden="true"></i>
-                    <li><a href="#" class="white" rel="noopener noreferrer">Home</a></li>
+                    <li><a href="dashboard.php" class="white" rel="noopener noreferrer">Home</a></li>
                 </div>
                 <div class="navlink analytics"><i class="fa fa-chart-line"></i>
-                    <li><a href="analytics.html" class="white" rel="noopener noreferrer">Analytics</a></i></li>
+                    <li><a href="analytics.php" class="white" rel="noopener noreferrer">Analytics</a></i></li>
                 </div>
                 <div class="navlink reports"><i class="fa fa-file" aria-hidden="true"></i>
-                    <li><a href="reports.html" class="white" rel="noopener noreferrer">View Timetable</a></li>
+                    <li><a href="reports.php" class="white" rel="noopener noreferrer">View Timetable</a></li>
                 </div>
                 <div class="navlink edit"><i class="fa fa-sliders" aria-hidden="true"></i>
                     <li><a href="input.php" class="white" rel="noopener noreferrer"> Edit Data </a></li>
