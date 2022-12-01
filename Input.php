@@ -213,8 +213,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
                                         <tbody></tbody>
                                     </table>
                                 </div>
-                            </div>
-        </div>
+                            </div></div></div>
         <div class="tab-pane fade align-items-center d-flex flex-column mt-2 mb-2" id="content-timeshifts" role="tabpanel" aria-labelledby="timeshifts" tabindex="0">
             <h2>Enter the timeshifts</h2>
                             <form role="form" class="form align-items-center d-flex flex-column mt-1" id="timeshift_form">
