@@ -19,14 +19,33 @@ $stmt;
 $username = $_GET['username'];
 $password = $_GET['password'];
 
+$login_option = $_GET['login_option'];
+$table_name = "";
+switch ($login_option) {
+    case 'admin':
+        $table_name = 'admins';
+        break;
+    case 'lecturer':
+        $table_name = 'lecturers';
+        break;
+    case 'timetabler':
+        $table_name = 'timetablers';
+        break;
+
+    default:
+        # code...
+        break;
+}
+
+
 if (isset($_GET['email'])) { //signup
     try {
         $email = $_GET['email'];
-        $conn->exec("CREATE TABLE IF NOT EXISTS `timetabler`.`users` ( `id` INT NOT NULL AUTO_INCREMENT , 
+        $conn->exec("CREATE TABLE IF NOT EXISTS " . $table_name . " ( `id` INT NOT NULL AUTO_INCREMENT , 
             `username` VARCHAR(30) NOT NULL , `email` VARCHAR(30) NOT NULL, 
             `password` VARCHAR(100) NOT NULL,
     PRIMARY KEY (`id`), UNIQUE (`email`)) ENGINE = InnoDB;");
-        $sql = "INSERT INTO users(username, email, password)VALUES(:username, :email, :password)";
+        $sql = "INSERT INTO " . $table_name . "(username, email, password)VALUES(:username, :email, :password)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":username", $username);
         $stmt->bindParam(":email", $email);
@@ -40,7 +59,8 @@ if (isset($_GET['email'])) { //signup
     }
 } else { //login
     try {
-        $stmt = $conn->prepare("SELECT id from users where username=:username and password=:password");
+        //echo $table_name;
+        $stmt = $conn->prepare("SELECT id from " . $table_name . " where username=:username and password=:password");
         $stmt->bindParam(":username", $username);
         $stmt->bindParam(":password", $password);
         $stmt->execute();
@@ -48,9 +68,25 @@ if (isset($_GET['email'])) { //signup
         if ($res) { //if results came in
             $_SESSION["username"] = $username;
             $_SESSION["password"] = $password;
+            $_SESSION["login_option"] = $login_option;
             echo "SUCCESS";
             //header("location:http://127.0.0.1/io/Timetabler.io-main/dashboard.php");
-            echo "<script>location.href='dashboard.php';</script>";
+            switch ($_SESSION['login_option']) {
+                case 'admin':
+                    echo "<script>location.href='administrator/dashboard.php';</script>";
+                    break;
+                case 'lecturer':
+                    echo "<script>location.href='lecturer/dashboard.php';</script>";
+                    break;
+                case 'timetabler':
+                    echo "<script>location.href='timetabler/dashboard.php';</script>";
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+            
             die();
         } else {
             echo "FAILED:\nUsername or password incorrect";
@@ -58,6 +94,8 @@ if (isset($_GET['email'])) { //signup
     } catch (PDOException $e) {
         if ($e->errorInfo[1] == 1146) {
             echo "FAILED:\nYou need to sign up first";
+        } else {
+            echo "FAILED: Error occured";
         }
     }
 }

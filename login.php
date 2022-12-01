@@ -12,27 +12,28 @@ session_start();
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login | Timetabler</title>
-	<link href="assets/css/phppot-style.css" type="text/css" rel="stylesheet" />
-	<link href="assets/css/user-registration.css" type="text/css" rel="stylesheet" />
+	<title>Login</title>
+
+	<link href="Assets/css/phppot-style.css" type="text/css" rel="stylesheet" />
+	<link href="Assets/css/user-registration.css" type="text/css" rel="stylesheet" />
 	<script src="vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
-	<link
-      rel="shortcut icon"
-      href="Assets/Photos/favicon.png"
-      type="image/x-icon"
-    />
 </head>
 
-<body style="background-color:#000;">
+<body>
 	<div class="phppot-container">
-		<div class="sign-up-container" style="height:75%;">
-			<div class="login-signup" style="position:absolute;bottom:10rem;left:43%; display:flex;flex-direction:column;text-align:center;">
-			<p>If you are a new user . . .</p><a href="user-registration.php" style="color:#000">Sign up</a>
+		<div class="sign-up-container">
+			<div class="login-signup">
+				<a href="user-registration.php">Sign up</a>
 			</div>
-			<div class="signup-align" style="margin-top: 2.5rem;">
+			<div class="signup-align">
 				<form name="login" id="form">
 					<div class="signup-heading">Login</div>
 					<div class="error-msg" id="error-msg">
+					</div>
+					<div class="loginas row" id="loginas"> <span> Login as</span> <br>
+						<input type="radio" name="loginoption" id="admin" value="admin">Admin
+						<input type="radio" name="loginoption" id="lecturer" value="lecturer">Lecturer
+						<input type="radio" name="loginoption" id="timetabler" value="timetabler" checked>Timetabler
 					</div>
 					<div class="row">
 						<div class="inline-block">
@@ -69,7 +70,8 @@ session_start();
 				$('#error-msg').html("Please input all the fields");
 				return;
 			}
-			console.log(username + " " + password);
+			var login_option = $("#loginas").find("input:radio:checked");
+			//console.log(username + " " + password + " " + login_option[0].value);
 			// Ajax
 			var xmlhttp;
 			if (window.XMLHttpRequest) {
@@ -85,7 +87,7 @@ session_start();
 					$('#error-msg').html(response);
 				}
 			};
-			xmlhttp.open("GET", "authorize.php?username=" + username + "&password=" + password, true);
+			xmlhttp.open("GET", "authorize.php?login_option=" + login_option[0].value + "&username=" + username + "&password=" + password, true);
 			xmlhttp.send();
 		}
 	</script>

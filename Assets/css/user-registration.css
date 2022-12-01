@@ -72,7 +72,7 @@ input.input-box-330 {
 }
 
 .success-msg {
-    padding-top: 10px;
+	padding-top: 10px;
 	color: #176701;
 	text-align: center;
 }
@@ -89,4 +89,17 @@ input.btn {
 	font-weight: bold;
 	padding-top: 60px;
 	text-align: center;
+}
+
+.loginas {
+	width: fit-content;
+	margin: auto !important;
+}
+
+.loginas span {
+	float: left;
+}
+
+input[type=radio] {
+	width: 20px;
 }

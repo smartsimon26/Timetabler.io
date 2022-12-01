@@ -1,28 +1,28 @@
 <html>
 
 <head>
-	<title>Sign Up | Timetabler</title>
-	<link href="assets/css/phppot-style.css" type="text/css" rel="stylesheet" />
-	<link href="assets/css/user-registration.css" type="text/css" rel="stylesheet" />
+	<title>User Registration</title>
+	<link href="../Assets/css/phppot-style.css" type="text/css" rel="stylesheet" />
+	<link href="../Assets/css/user-registration.css" type="text/css" rel="stylesheet" />
 	<script src="vendor/jquery/jquery-3.3.1.js" type="text/javascript"></script>
-	<link
-      rel="shortcut icon"
-      href="Assets/Photos/favicon.png"
-      type="image/x-icon"
-    />
 </head>
 
-<body style="background-color:#000;">
+<body>
 	<div class="phppot-container">
-		<div class="sign-up-container" style="height:75%;">
-			<div class="login-signup" style="position:absolute;bottom:7.5rem;left:43%; display:flex;flex-direction:column;text-align:center;">
-				<p>Already have an account?</p><a href="index.php" style="color:#000">Login</a>
+		<div class="sign-up-container">
+			<div class="login-signup">
+				<a href="index.php">Login</a>
 			</div>
 			<div class="">
 				<form name="sign-up" role="form" id="form">
 					<div class="signup-heading">Registration</div>
 
 					<div class="error-msg" id="error-msg"></div>
+					<div class="loginas row" id="loginas"> <span> Login as</span> <br>
+						<input type="radio" name="loginoption" id="admin" value="admin">Admin
+						<input type="radio" name="loginoption" id="lecturer" value="lecturer">Lecturer
+						<input type="radio" name="loginoption" id="timetabler" value="timetabler" checked>Timetabler
+					</div>
 					<div class="row">
 						<div class="inline-block">
 							<div class="form-label">
@@ -78,6 +78,7 @@
 				$('#error-msg').html("Password doesn't match");
 				return;
 			}
+			var login_option = $("#loginas").find("input:radio:checked");
 			console.log(username + " " + password);
 			// Ajax
 			var xmlhttp;
@@ -94,7 +95,7 @@
 					$('#error-msg').html(response);
 				}
 			};
-			xmlhttp.open("GET", "authorize.php?username=" + username + "&email=" + email + "&password=" + password, true);
+			xmlhttp.open("GET", "authorize.php?login_option=" + login_option[0].value + "&username=" + username + "&email=" + email + "&password=" + password, true);
 			xmlhttp.send();
 		}
 	</script>

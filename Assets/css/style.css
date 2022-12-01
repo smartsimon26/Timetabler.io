@@ -1,0 +1,306 @@
+* {
+    font-family: poppins;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+.navtop {
+    width: 82.5%;
+    display: flex;
+    flex-wrap: nowrap;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    justify-content: space-between;
+    align-items: center;
+    height: 3.5rem;
+    background-color: #000;
+}
+
+.menuactions {
+    width: 25%;
+    height: auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.menubuttons {
+    width: 30%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 2rem;
+}
+
+.menubuttons i {
+    width: 2rem;
+    height: 2rem;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menubuttons img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: 2rem;
+}
+
+.theme,
+.settings,
+.notifications,
+.profile {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    margin-right: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidemenu {
+    position: fixed;
+    width: 17.5%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.logos {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo i {
+    width: 2rem;
+    font-size: 2rem;
+    padding-top: .35rem;
+    padding-right: 2.5rem;
+}
+
+.logo h2 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-top: 0.75rem;
+    width: auto;
+}
+
+.navlinks {
+    position: relative;
+    margin-top: 2rem;
+}
+
+.navlink {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 5rem;
+    padding-left: 1rem;
+    border-bottom-right-radius: .25rem;
+    border-top-right-radius: .25rem;
+    width: 95%;
+}
+
+.home {
+    background-color: #ffffff0a;
+}
+
+.navlink li {
+    margin-left: 1.25rem;
+
+}
+
+.hr {
+    width: 90%;
+    position: relative;
+    display: flex;
+    margin-left: .5rem;
+    align-items: center;
+    justify-content: center;
+    color: #ffffffce;
+}
+
+.viewpoint {
+    position: relative;
+    width: 82.5%;
+    top: 3rem;
+    left: 17.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.quickstats {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.ccard {
+    position: relative;
+    width: 12.5rem;
+    height: 5rem;
+    background-color: #fff;
+    border: .2rem solid #000;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: .5rem;
+    padding: 0;
+    border-radius: 0rem;
+}
+
+.ccard i {
+    font-size: 2rem;
+}
+
+.card-content {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.ccard h1 {
+    font-size: .65rem;
+}
+
+.ccard h2 {
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    font-weight: bolder;
+}
+
+.ccard p {
+    font-size: .5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.finaltimetable {
+    position: relative;
+    left: 17.5%;
+    padding-left: 1rem;
+    width: 81%;
+    top: 5rem;
+}
+
+.white {
+    color: white !important;
+    text-decoration: none;
+}
+
+.white:hover {
+    text-decoration: underline !important;
+}
+
+.no-border {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+}
+
+.final_timetable {
+    height: 40em;
+}
+
+.tt {
+    height: 20em;
+}
+
+.tt thead th,
+.final_timetable thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.tt thead {
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+#download {
+    float: right;
+}
+
+.graph {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 31rem;
+    width: 67.5%;
+    left: 0rem;
+    right: .5rem;
+}
+
+.linegraph {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.queries {
+    position: relative;
+    left: .5rem;
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+}
+
+.searches .card .card-body {
+    height: 12rem;
+}
+
